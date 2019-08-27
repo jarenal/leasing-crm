@@ -1,0 +1,200 @@
+	<input id="contact_id" type="hidden" name="contact[id]" data-bind="value: fields.id" value=""/>
+	<input id="contact_type" type="hidden" name="contact[id]" data-bind="value: fields.contact_type" value=""/>
+	<!-- ORGANISATION -->
+	<fieldset id="organisation-fieldset">
+		<legend>Organisation</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_support_provider">Name</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="contact_organisation" type="hidden" name="contact[organisation]" value="" data-bind="smartComboOrganisation: fields.organisation, withCreate: true, auto_fill_address: true"/>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- BASIC DETAILS -->
+	<fieldset id="basic-details-fieldset">
+		<legend>Basic Details</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_title">Title</label>
+		    <div class="col-sm-6">
+				<select id="contact_title" name="contact[contact_title]" data-bind="value: fields.contact_title" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_titles}
+					<option value="{id}">{name}</option>
+					{/contact_titles}
+				</select>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_name">First name</label>
+	    	<div class="col-sm-6">
+	      		<input class="form-control" type="text" id="contact_name" placeholder="" name="contact[name]" data-bind="value: fields.name" value=""/>
+	    	</div>
+	    </div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_surname">Last name</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_surname" placeholder="" name="contact[surname]" data-bind="value: fields.surname" value=""/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- CONTACT DETAILS -->
+	<fieldset id="contact-details-fieldset">
+		<legend>Contact Details</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_email">Email</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_email" placeholder="user@example.com" name="contact[email]" data-bind="value: fields.email" value=""/>
+		    </div>
+	  	</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_landline">Landline</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_landline" placeholder="" name="contact[landline]" data-bind="value: fields.landline" value=""/>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_mobile">Mobile</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_mobile" placeholder="" name="contact[mobile]" data-bind="value: fields.mobile" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_method">Preferred contact method</label>
+		    <div class="col-sm-6">
+				<select id="contact_method" name="contact[contact_method]" data-bind="value: fields.contact_method" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_methods}
+					<option value="{id}">{name}</option>
+					{/contact_methods}
+				</select>
+			</div>
+		</div>
+		<div id="contact_method_other_row" class="form-group form-group-lg" style="display:none">
+	    	<label class="col-sm-3 control-label" for="contact_method_other">Specify other contact method</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_method_other" name="contact[method_other]" data-bind="value: fields.contact_method_other" value=""/>
+		    </div>
+	  	</div>
+	</fieldset>
+
+	<!-- ADDRESS -->
+	<fieldset id="address-fieldset">
+		<legend>Address</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_address">Address</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_address" placeholder="" name="contact[address]" data-bind="value: fields.address" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_town">Town</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_town" placeholder="" name="contact[town]" data-bind="value: fields.town" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_postcode">Postcode</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_postcode" placeholder="" name="contact[postcode]" data-bind="value: fields.postcode" value=""/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- INVESTMENT -->
+	<fieldset id="investment-fieldset">
+		<legend>Investment</legend>
+		<div class="form-group required form-group-lg">
+			<label class="col-sm-3 control-label" for="landlord_is_investor">Are they also an investor?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-2">
+			    	<input type="radio" name="landlord[is_investor]" value="0" data-bind="checked: fields.is_investor"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="clearfix visible-sm-block"></div>
+		    	<div class="col-sm-12 col-md-2">
+			    	<input type="radio" name="landlord[is_investor]" checked="checked" value="1" data-bind="checked: fields.is_investor" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div id="investments-container" style="display:none">
+			<div id="investments-form-container">
+			</div>
+
+			<div class="form-group organisation-new form-group-lg">
+				<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right btn-group" role="group">
+					<a id="btn-stop-edit-investments" href="" class="btn btn-info btn-sm btn-responsive" role="button"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Stop edit investments</a>
+					<a id="btn-new-investment" href="" class="btn btn-warning btn-sm btn-responsive" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New investment</a>
+					<a id="btn-start-edit-investments" href="" class="btn btn-primary btn-sm btn-responsive" role="button" style="display:none"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Start edit investments</a>
+				</div>
+			</div>
+		</div>
+
+	</fieldset>
+
+	<!-- ACCREDITATION -->
+	<fieldset id="accreditation-fieldset">
+		<legend>Accreditation</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="landlord_accreditation">Accreditation</label>
+		    <div class="col-sm-6">
+				<select id="landlord_accreditation" name="contact[landlord_accreditation]" data-bind="value: fields.landlord_accreditation" class="form-control">
+					<option value="0">Choose one</option>
+					{#landlord_accreditations}
+					<option value="{id}">{name}</option>
+					{/landlord_accreditations}
+				</select>
+			</div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="landlord_accreditation_references">References</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" id="landlord_accreditation_references" placeholder="" name="contact[accreditation_references]"  data-bind="value: fields.accreditation_references" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- MISCELLANEOUS -->
+	<fieldset id="miscellaneous-fieldset">
+		<legend>Miscellaneous</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_comments">Comments</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" id="contact_comments" placeholder="" name="contact[comments]"  data-bind="value: fields.comments" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- ADMINISTRATION -->
+	<fieldset id="administration-fieldset">
+		<legend>Administration</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_status">Status</label>
+		    <div class="col-sm-6">
+				<select id="contact_status" name="contact[contact_status]" data-bind="value: fields.contact_status" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_statuses}
+					<option value="{id}">{name}</option>
+					{/contact_statuses}
+				</select>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" data-bind="if: fields.created_by">
+	    	<label class="col-sm-3 control-label" for="contact_status">Created by</label>
+		    <div class="col-sm-6 control-readonly">
+				<span id="contact_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+			</div>
+		</div>
+		<div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+	    	<label class="col-sm-3 control-label" for="contact_status">Updated by</label>
+		    <div class="col-sm-6 control-readonly">
+				<span id="contact_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+			</div>
+		</div>
+		<div class="form-group organisation-new form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+				<a id="btn-save-landlord" href="" class="btn btn-success btn-lg btn-responsive" role="button">Save Landlord</a>
+			</div>
+		</div>
+	</fieldset>

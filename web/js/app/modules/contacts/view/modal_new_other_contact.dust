@@ -1,0 +1,140 @@
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{modal_title}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+        <div id="alert-modal-messages" class="row text-left" style="display:none">
+        </div>
+        <form class="form-horizontal form-modal-popup">
+          <!-- SUBTYPE -->
+          <fieldset id="address-fieldset">
+            <legend>Subtype</legend>
+            <div class="form-group required form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_other_type">Subtype</label>
+                <div class="col-sm-6">
+                <select id="contact_other_type" name="contact[other_type]" data-bind="value: fields.other_type" class="form-control">
+                  <option value="0">Choose one</option>
+                  {#static_data.other_types}
+                  <option value="{id}">{name}</option>
+                  {/static_data.other_types}
+                </select>
+              </div>
+            </div>
+          </fieldset>
+          <!-- BASIC DETAILS -->
+          <fieldset id="basic-details-fieldset">
+            <legend>Basic Details</legend>
+            <div class="form-group required form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_title">Title</label>
+                <div class="col-sm-6">
+                <select id="contact_title" name="contact[contact_title]" data-bind="value: fields.contact_title" class="form-control">
+                  <option value="0">Choose one</option>
+                  {#static_data.contact_titles}
+                  <option value="{id}">{name}</option>
+                  {/static_data.contact_titles}
+                </select>
+              </div>
+            </div>
+            <div class="form-group required form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_name">First name</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="contact_name" placeholder="" name="contact[name]" data-bind="value: fields.name" value=""/>
+                </div>
+              </div>
+            <div class="form-group required form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_surname">Last name</label>
+                <div class="col-sm-6">
+                  <input class="form-control" type="text" id="contact_surname" placeholder="" name="contact[surname]" data-bind="value: fields.surname" value=""/>
+                </div>
+            </div>
+          </fieldset>
+
+          <!-- CONTACT DETAILS -->
+          <fieldset id="contact-details-fieldset">
+            <legend>Contact Details</legend>
+            <div class="form-group form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_email">Email</label>
+                <div class="col-sm-6">
+                  <input class="form-control" type="text" id="contact_email" placeholder="user@example.com" name="contact[email]" data-bind="value: fields.email" value=""/>
+                </div>
+              </div>
+            <div class="form-group form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_landline">Landline</label>
+                <div class="col-sm-6">
+                  <input class="form-control" type="text" id="contact_landline" placeholder="" name="contact[landline]" data-bind="value: fields.landline" value=""/>
+                </div>
+            </div>
+            <div class="form-group required form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_mobile">Mobile</label>
+                <div class="col-sm-6">
+                  <input class="form-control" type="text" id="contact_mobile" placeholder="" name="contact[mobile]" data-bind="value: fields.mobile" value=""/>
+                </div>
+            </div>
+          </fieldset>
+
+          <!-- ADDRESS -->
+          <fieldset id="address-fieldset">
+            <legend>Address</legend>
+            <div class="form-group form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_address">Address</label>
+                <div class="col-sm-6">
+                  <input class="form-control" type="text" id="contact_address" placeholder="" name="contact[address]" data-bind="value: fields.address" value=""/>
+                </div>
+            </div>
+            <div class="form-group form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_town">Town</label>
+                <div class="col-sm-6">
+                  <input class="form-control" type="text" id="contact_town" placeholder="" name="contact[town]" data-bind="value: fields.town" value=""/>
+                </div>
+            </div>
+            <div class="form-group form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_postcode">Postcode</label>
+                <div class="col-sm-6">
+                  <input class="form-control" type="text" id="contact_postcode" placeholder="" name="contact[postcode]" data-bind="value: fields.postcode" value=""/>
+                </div>
+            </div>
+          </fieldset>
+
+          <!-- MISCELLANEOUS -->
+          <fieldset id="address-fieldset">
+            <legend>Miscellaneous</legend>
+            <div class="form-group form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_job_title">Job title</label>
+                <div class="col-sm-6">
+                  <input class="form-control" type="text" id="contact_job_title" placeholder="" name="contact[job_title]" data-bind="value: fields.job_title" value=""/>
+                </div>
+            </div>
+            <div class="form-group form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_comments">Comments</label>
+                <div class="col-sm-6">
+                  <textarea class="form-control" id="contact_comments" placeholder="" name="contact[comments]"  data-bind="value: fields.comments" rows="6" style="height:auto;"></textarea>
+                </div>
+            </div>
+          </fieldset>
+
+          <!-- ADMINISTRATION -->
+          <fieldset id="administration-fieldset">
+            <legend>Administration</legend>
+            <div class="form-group required form-group-lg">
+                <label class="col-sm-3 control-label" for="contact_status">Status</label>
+                <div class="col-sm-6">
+                <select id="contact_status" name="contact[contact_status]" data-bind="value: fields.contact_status" class="form-control">
+                  <option value="0">Choose one</option>
+                  {#static_data.contact_statuses[4]}
+                  <option value="{id}">{name}</option>
+                  {/static_data.contact_statuses[4]}
+                </select>
+              </div>
+            </div>
+        </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->

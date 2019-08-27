@@ -1,0 +1,35 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">Organisations</h1>
+              </div>
+              <div class="pull-right">
+                  <a id="btn-add-organisation" href="{{ path("app_backend_organisation_new") }}" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-plus"></i><span> Add organisation</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+          <table id="table-javascript"></table>
+          </div>
+          <div class="table-responsive">
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    require(["/js/common.js"], function(common){
+      require(['app/modules/organisations/controller/index.controller']);
+    });
+  </script>
+{% endblock %}

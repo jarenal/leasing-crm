@@ -1,0 +1,23 @@
+<form class="form-horizontal">
+	<!-- TYPE -->
+	<fieldset>
+	<legend>Type</legend>
+	<div class="form-group form-group-lg">
+    	<label class="col-sm-3 control-label" for="choose_contact_type">Contact type</label>
+	    <div class="col-sm-6">
+	    	{% if contact is empty %}
+			<select id="choose_contact_type" name="contact[choose_contact_type]" class="form-control">
+				<option value="0">-- Choose one --</option>
+				{% for type in contact_types %}
+				<option value="{{ type.id }}">{{ type.name }}</option>
+				{% endfor %}
+			</select>
+			{% else %}
+			<input type="text" name="contact[contact_type]" value="{{ contact.typeHasStatus.type.name }}" class="form-control" disabled="disabled" />
+			{% endif %}
+		</div>
+	</div>
+	</fieldset>
+	<div id="fields-container">
+	</div>
+</form>

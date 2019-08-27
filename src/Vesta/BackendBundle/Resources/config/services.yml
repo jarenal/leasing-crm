@@ -1,0 +1,6 @@
+parameters:
+    app_backend.redis_max_lifetime: 86400
+services:
+#    app_backend.example:
+#        class: App\BackendBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

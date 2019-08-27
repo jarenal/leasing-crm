@@ -1,0 +1,19 @@
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modal-message-title">{title}</h4>
+      </div>
+      <div class="modal-body text-center">
+        {subtitle}
+        <br><br>
+        <a href="{contact.url}" target="_blank">#{contact.id} - {contact.fullname}</a>
+        <br><br>
+        Are you sure about follow creating this new user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">No, let me check it</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Yes, I'm sure!</button>
+      </div>
+    </div>
+  </div>

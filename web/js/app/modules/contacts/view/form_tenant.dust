@@ -1,0 +1,784 @@
+	<input id="contact_id" type="hidden" name="contact[id]" data-bind="value: fields.id" value=""/>
+	<input id="contact_type" type="hidden" name="contact[id]" data-bind="value: fields.contact_type" value=""/>
+
+
+	<!-- BASIC DETAILS -->
+	<fieldset id="basic-details-fieldset">
+		<legend>Basic Details</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_title">Title</label>
+		    <div class="col-sm-6">
+				<select id="contact_title" name="contact[contact_title]" data-bind="value: fields.contact_title" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_titles}
+					<option value="{id}">{name}</option>
+					{/contact_titles}
+				</select>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_name">First name</label>
+	    	<div class="col-sm-6">
+	      		<input class="form-control" type="text" id="contact_name" placeholder="" name="contact[name]" data-bind="value: fields.name" value=""/>
+	    	</div>
+	    </div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_surname">Last name</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_surname" placeholder="" name="contact[surname]" data-bind="value: fields.surname" value=""/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- CONTACT DETAILS -->
+	<fieldset id="contact-details-fieldset">
+		<legend>Contact Details</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_email">Email</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_email" placeholder="user@example.com" name="contact[email]" data-bind="value: fields.email" value=""/>
+		    </div>
+	  	</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_landline">Landline</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_landline" placeholder="" name="contact[landline]" data-bind="value: fields.landline" value=""/>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_mobile">Mobile</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_mobile" placeholder="" name="contact[mobile]" data-bind="value: fields.mobile" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_method">Preferred contact method</label>
+		    <div class="col-sm-6">
+				<select id="contact_method" name="contact[contact_method]" data-bind="value: fields.contact_method" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_methods}
+					<option value="{id}">{name}</option>
+					{/contact_methods}
+				</select>
+			</div>
+		</div>
+		<div id="contact_method_other_row" class="form-group form-group-lg" style="display:none">
+	    	<label class="col-sm-3 control-label" for="contact_method_other">Specify other contact method</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_method_other" name="contact[method_other]" data-bind="value: fields.contact_method_other" value=""/>
+		    </div>
+	  	</div>
+	</fieldset>
+
+	<!-- ADDRESS -->
+	<fieldset id="address-fieldset">
+		<legend>Address</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_address">Address</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_address" placeholder="" name="contact[address]" data-bind="value: fields.address" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_town">Town</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_town" placeholder="" name="contact[town]" data-bind="value: fields.town" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_postcode">Postcode</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_postcode" placeholder="" name="contact[postcode]" data-bind="value: fields.postcode" value=""/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- GENERAL DETAILS -->
+	<fieldset id="general-details-fieldset">
+		<legend>General details</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_birthdate">Date of birth</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="contact_birthdate" placeholder="" name="contact[birthdate]" data-bind="datePickerFreeDate: fields.birthdate, value: fields.birthdate" value=""/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_postcode">Gender</label>
+		    <div class="col-sm-6">
+				<select id="contact_gender" name="contact[gender]" data-bind="value: fields.gender" class="form-control">
+					<option value="0">Choose one</option>
+					{#tenant_genders}
+					<option value="{id}">{name}</option>
+					{/tenant_genders}
+				</select>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_postcode">Marital status</label>
+		    <div class="col-sm-6">
+				<select id="contact_marital_status" name="contact[marital_status]" data-bind="value: fields.marital_status" class="form-control">
+					<option value="0">Choose one</option>
+					{#tenant_marital_statuses}
+					<option value="{id}">{name}</option>
+					{/tenant_marital_statuses}
+				</select>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_postcode">National Insurance Number</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_nin" placeholder="" name="contact[nin]" data-bind="value: fields.nin" value=""/>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_local_authority">Local authority</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="contact_local_authority" type="hidden" name="contact[local_authority]"  data-bind="smartComboOrganisation: fields.local_authority, withCreate: true, auto_fill_address: false" value=""/>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg margin-top-40">
+	    	<label class="col-sm-3 control-label" for="contact_social_services_contact">Social services contact</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="contact_social_services_contact" type="hidden" name="contact[social_services_contact]"  data-bind="smartComboOtherContact: fields.social_services_contact, withCreate: true" value=""/>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- CHILDREN -->
+	<fieldset id="children-fieldset">
+		<legend>Children</legend>
+
+		<div id="children-container">
+			<div id="children-form-container">
+			</div>
+
+			<div class="form-group form-group-lg">
+				<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right btn-group" role="group">
+					<a id="btn-stop-edit-children" href="" class="btn btn-info btn-sm btn-responsive" role="button"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Stop edit Children</a>
+					<a id="btn-new-child" href="" class="btn btn-warning btn-sm btn-responsive" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Child</a>
+					<a id="btn-start-edit-children" href="" class="btn btn-primary btn-sm btn-responsive" role="button" style="display:none"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Start edit children</a>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- SUPPORT -->
+	<fieldset id="support-fieldset">
+		<legend>Support</legend>
+		<div class="form-group required form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_need_night_support">Sleepin/Live nights needed?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[need_night_support]" value="0" data-bind="checked: fields.need_night_support"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[need_night_support]" checked="checked" value="1" data-bind="checked: fields.need_night_support" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+			<div class="clearfix visible-md-block"></div>
+		    <div class="col-sm-12 col-md-6 col-lg-7 col-sm-offset-3 margin-top-10">
+		    	<div class="row">
+		    		{#tenant_nights_support}
+		    		<div class="col-xs-4 col-sm-4 col-md-6 col-lg-4 col-xl-3">
+						<label class="checkbox-inline cbx-label disabled">
+							<input  id="tenant_nights_support_{id}" type="checkbox" value="{id}" name="contact[nights_support]" data-bind="checked: fields.nights_support" disabled="disabled"> {name}
+						</label>
+		    		</div>
+		    		{/tenant_nights_support}
+		    	</div>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_has_chc_budget">Continuing health care budget?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[has_chc_budget]" checked="checked" value="0" data-bind="checked: fields.has_chc_budget"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[has_chc_budget]" value="1" data-bind="checked: fields.has_chc_budget" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_town">Support package hours per week?</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_support_package_hours" placeholder="" name="contact[support_package_hours]" data-bind="value: fields.support_package_hours" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_town">Disability</label>
+		    <div class="col-sm-6">
+		    	<div id="conditions-container"></div>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_has_agency_support_provider">Are they supported by a Registered Support Provider?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[has_agency_support_provider]" checked="checked" value="0" data-bind="checked: fields.has_agency_support_provider"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[has_agency_support_provider]" value="1" data-bind="checked: fields.has_agency_support_provider" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_agency_support_provider">Registered support provider</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="contact_agency_support_provider" type="hidden" name="contact[agency_support_provider]" data-bind="smartComboOrganisation: fields.agency_support_provider, withCreate: true, auto_fill_address: false" value=""/>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg margin-top-40">
+	    	<label class="col-sm-3 control-label" for="contact_support_provider">Contact support provider</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="contact_contact_support_provider" type="hidden" name="contact[contact_support_provider]" data-bind="smartComboOtherAndLandlordContact: fields.contact_support_provider, withCreate: true" value=""/>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- DEPUTY -->
+	<fieldset id="support-fieldset">
+		<legend>Deputy</legend>
+		<div class="form-group required form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_lack_capacity">Does the tenant lack capacity?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[lack_capacity]" value="0" data-bind="checked: fields.lack_capacity"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[lack_capacity]" checked="checked" value="1" data-bind="checked: fields.lack_capacity" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div id="deputy_contact_form_group" class="form-group form-group-lg margin-top-40">
+	    	<label class="col-sm-3 control-label" for="contact_deputy">Deputy / Point of contact</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="contact_deputy" type="hidden" name="contact[deputy]" data-bind="smartComboOtherAndLandlordContact: fields.deputy, withCreate: true" value=""/>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- HOUSING REQUIREMENTS -->
+	<fieldset id="housing-requirements-fieldset-1">
+		<legend>Housing requirements</legend>
+		<div class="form-group required form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_housingRegister">Are they on the housing register?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[housingRegister]" checked="checked" value="0" data-bind="checked: fields.housingRegister"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[housingRegister]" value="1" data-bind="checked: fields.housingRegister" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_moveDate">What date do they need to move by?</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="contact_moveDate" placeholder="" name="contact[moveDate]" data-bind="datePickerFreeDate: fields.moveDate, value: fields.moveDate" value=""/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+
+	</fieldset>
+	<fieldset id="area-fieldset" class="margin-top-20">
+		<div id="areas-container">
+			<div id="areas-form-container"></div>
+			<div class="form-group form-group-lg">
+				<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right btn-group" role="group">
+					<a id="btn-stop-edit-areas" href="" class="btn btn-info btn-sm btn-responsive" role="button"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Stop edit areas</a>
+					<a id="btn-new-area" href="" class="btn btn-warning btn-sm btn-responsive" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New area</a>
+					<a id="btn-start-edit-areas" href="" class="btn btn-primary btn-sm btn-responsive" role="button" style="display:none"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Start edit areas</a>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset id="housing-requirements-fieldset-2">
+		<div class="form-group required form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_outCounty">Is it out of county?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[outCounty]" checked="checked" value="0" data-bind="checked: fields.outCounty"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-9">
+			    	<input type="radio" name="contact[outCounty]" value="1" data-bind="checked: fields.outCounty" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_property_type">Property type</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+				    <div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="1" name="contact[property_type]" data-bind="checked: fields.requirements"> Detached
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="2" name="contact[property_type]" data-bind="checked: fields.requirements"> Terraced
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="3" name="contact[property_type]" data-bind="checked: fields.requirements"> Flats/Apartments
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="4" name="contact[property_type]" data-bind="checked: fields.requirements"> Semi-detached
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="5" name="contact[property_type]" data-bind="checked: fields.requirements"> Bungalow
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_bedrooms">How many bedrooms?</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="6" name="contact[bedrooms]" data-bind="checked: fields.requirements"> 1 bedroom
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="7" name="contact[bedrooms]" data-bind="checked: fields.requirements"> 2 bedrooms
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="8" name="contact[bedrooms]" data-bind="checked: fields.requirements"> 3 bedrooms
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="9" name="contact[bedrooms]" data-bind="checked: fields.requirements"> 4 bedrooms
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="10" name="contact[bedrooms]" data-bind="checked: fields.requirements"> 5 bedrooms
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="11" name="contact[bedrooms]" data-bind="checked: fields.requirements"> 6 bedrooms
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_floors">How many floors should the property have?</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="36" name="contact[floors]" data-bind="checked: fields.requirements"> 1 floor
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="37" name="contact[floors]" data-bind="checked: fields.requirements"> 2 floors
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="38" name="contact[floors]" data-bind="checked: fields.requirements"> 3 floors
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="39" name="contact[floors]" data-bind="checked: fields.requirements"> 4 or more floors
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_furnitures">Furnished or unfurnished?</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="12" name="contact[furnitures]" data-bind="checked: fields.requirements"> Furnished
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="13" name="contact[furnitures]" data-bind="checked: fields.requirements"> Unfurnished
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="14" name="contact[furnitures]" data-bind="checked: fields.requirements"> Part furnished
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_parking">Parking?</label>
+		    <div class="col-sm-9">
+		    	<div class="col-sm-12 col-md-5 col-xl-3">
+		    		<input type="hidden" data-bind="tenantUpdateParking: fields.parking"/>
+			    	<input type="radio" name="contact[parking]" value="15" data-bind="checked: fields.parking"/>&nbsp;<label class="control-label">No parking needed</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-7 col-xl-9">
+			    	<input type="radio" name="contact[parking]" value="16" data-bind="checked: fields.parking" />&nbsp;<label class="control-label">Parking for</label>&nbsp;&nbsp;&nbsp;
+					<select id="contact_parking_for" name="contact[parking_for]" data-bind="value: fields.parkingFor" class="form-control form-control-parking-for">
+						<option value="0">Choose one</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select><label class="control-label">&nbsp;&nbsp;cars</label>
+		    	</div>
+			</div>
+		</div>
+
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_garden">Garden?</label>
+		    <div class="col-sm-9">
+		    	<div class="col-sm-12 col-md-5 col-xl-3">
+		    		<input type="hidden" data-bind="tenantUpdateGarden: fields.garden"/>
+			    	<input type="radio" name="contact[garden]" value="19" data-bind="checked: fields.garden" />&nbsp;<label class="control-label">No garden required</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-5 col-xl-3">
+			    	<input type="radio" name="contact[garden]" value="17" data-bind="checked: fields.garden"/>&nbsp;<label class="control-label">Garden required</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-5 col-xl-3">
+			    	<input type="radio" name="contact[garden]" value="18" data-bind="checked: fields.garden" />&nbsp;<label class="control-label">Garden preferred</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div id="garden-details-box" class="form-group form-group-lg" style="display:none">
+			<label class="col-sm-3 control-label" for="contact_garden_details">Garden details</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="20" name="contact[garden_details]" data-bind="checked: fields.requirements"> Front garden
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="21" name="contact[garden_details]" data-bind="checked: fields.requirements"> Fenced and secure
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="22" name="contact[garden_details]" data-bind="checked: fields.requirements"> Large back garden
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="23" name="contact[garden_details]" data-bind="checked: fields.requirements"> Back garden
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="24" name="contact[garden_details]" data-bind="checked: fields.requirements"> Private/not overlooked
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="25" name="contact[garden_details]" data-bind="checked: fields.requirements"> Communal garden
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_accessible">Accessible?</label>
+		    <div class="col-sm-9">
+		    	<div class="col-sm-12 col-md-4 col-xl-1">
+		    		<input type="hidden" data-bind="tenantUpdateAccessible: fields.accessible"/>
+			    	<input type="radio" name="contact[accessible]" value="28" data-bind="checked: fields.accessible" />&nbsp;<label class="control-label">None</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-8 col-xl-3">
+			    	<input type="radio" name="contact[accessible]" value="26" data-bind="checked: fields.accessible" />&nbsp;<label class="control-label">Fully wheelchair accessible</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-5 col-xl-3">
+			    	<input type="radio" name="contact[accessible]" value="27" data-bind="checked: fields.accessible"/>&nbsp;<label class="control-label">Minor adaptations</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_smoking">Smoking required</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+		    		<input type="hidden" data-bind="tenantUpdateSmoking: fields.smoking"/>
+			    	<input type="radio" name="contact[smoking]" value="30" data-bind="checked: fields.smoking" />&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-9">
+			    	<input type="radio" name="contact[smoking]" value="29" data-bind="checked: fields.smoking" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_pets">Pets required</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+		    		<input type="hidden" data-bind="tenantUpdatePets: fields.pets"/>
+			    	<input type="radio" name="contact[pets]" value="32" data-bind="checked: fields.pets" />&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-9">
+			    	<input type="radio" name="contact[pets]" value="31" data-bind="checked: fields.pets" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_specialDesignFeatures">Any other special design features?</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" id="contact_specialDesignFeatures" placeholder="" name="contact[specialDesignFeatures]"  data-bind="value: fields.specialDesignFeatures" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_tenantPersonality">Tenant personality (likes/dislikes)</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" id="contact_tenantPersonality" placeholder="" name="contact[tenantPersonality]"  data-bind="value: fields.tenantPersonality" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_willingToShare">Are they willing to share?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[willingToShare]" checked="checked" value="0" data-bind="checked: fields.willingToShare"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[willingToShare]" value="1" data-bind="checked: fields.willingToShare" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- TENANT HISTORY -->
+	<fieldset id="tenant-history-fieldset">
+		<legend>Tenant history</legend>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_drugHistorial">History of drug and alcohol abuse?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[drugHistorial]" checked="checked" value="0" data-bind="checked: fields.drugHistorial"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[drugHistorial]" value="1" data-bind="checked: fields.drugHistorial" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="contact_drugHistorialDetails" placeholder="" name="contact[drugHistorialDetails]"  data-bind="value: fields.drugHistorialDetails" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_sexualOffencesHistorial">History of sexual offences?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[sexualOffencesHistorial]" checked="checked" value="0" data-bind="checked: fields.sexualOffencesHistorial"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[sexualOffencesHistorial]" value="1" data-bind="checked: fields.sexualOffencesHistorial" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="contact_sexualOffencesHistorialDetails" placeholder="" name="contact[sexualOffencesHistorialDetails]"  data-bind="value: fields.sexualOffencesHistorialDetails" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_arsonHistorial">History of arson?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[arsonHistorial]" checked="checked" value="0" data-bind="checked: fields.arsonHistorial"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[arsonHistorial]" value="1" data-bind="checked: fields.arsonHistorial" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="contact_arsonHistorialDetails" placeholder="" name="contact[arsonHistorialDetails]"  data-bind="value: fields.arsonHistorialDetails" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_evictionsHistorial">History of previous evictions?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[evictionsHistorial]" checked="checked" value="0" data-bind="checked: fields.evictionsHistorial"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[evictionsHistorial]" value="1" data-bind="checked: fields.evictionsHistorial" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="contact_evictionsHistorialDetails" placeholder="" name="contact[evictionsHistorialDetails]"  data-bind="value: fields.evictionsHistorialDetails" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_violenceHistorial">History of Violence towards Others</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[violenceHistorial]" checked="checked" value="0" data-bind="checked: fields.violenceHistorial"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[violenceHistorial]" value="1" data-bind="checked: fields.violenceHistorial" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="contact_violenceHistorialDetails" placeholder="" name="contact[violenceHistorialDetails]"  data-bind="value: fields.violenceHistorialDetails" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_antiSocialHistorial">History of Anti-Social Behaviour</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[antiSocialHistorial]" checked="checked" value="0" data-bind="checked: fields.antiSocialHistorial"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[antiSocialHistorial]" value="1" data-bind="checked: fields.antiSocialHistorial" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="contact_antiSocialHistorialDetails" placeholder="" name="contact[antiSocialHistorialDetails]"  data-bind="value: fields.antiSocialHistorialDetails" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_rentArrearsHistorial">History of Rent Arrears</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[rentArrearsHistorial]" checked="checked" value="0" data-bind="checked: fields.rentArrearsHistorial"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[rentArrearsHistorial]" value="1" data-bind="checked: fields.rentArrearsHistorial" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="contact_rentArrearsHistorialDetails" placeholder="" name="contact[rentArrearsHistorialDetails]"  data-bind="value: fields.rentArrearsHistorialDetails" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_vulnerabilityHistorial">Vulnerability in public</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[vulnerabilityHistorial]" checked="checked" value="0" data-bind="checked: fields.vulnerabilityHistorial"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="contact[vulnerabilityHistorial]" value="1" data-bind="checked: fields.vulnerabilityHistorial" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="contact_vulnerabilityHistorialDetails" placeholder="" name="contact[vulnerabilityHistorialDetails]"  data-bind="value: fields.vulnerabilityHistorialDetails" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="contact_tenantReferences">References</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" id="contact_tenantReferences" placeholder="" name="contact[tenantReferences]"  data-bind="value: fields.tenantReferences" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- MISCELLANEOUS -->
+	<fieldset id="miscellaneous-fieldset">
+		<legend>Miscellaneous</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_comments">Comments</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" id="contact_comments" placeholder="" name="contact[comments]"  data-bind="value: fields.comments" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- ADMINISTRATION -->
+	<fieldset id="administration-fieldset">
+		<legend>Administration</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_lfl_contact">Contact</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="contact_lfl_contact" type="hidden" name="contact[lfl_contact]"  data-bind="smartComboOtherContact: fields.lfl_contact, withCreate: true" value=""/>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg margin-top-40">
+	    	<label class="col-sm-3 control-label" for="contact_status">Status</label>
+		    <div class="col-sm-6">
+				<select id="contact_status" name="contact[contact_status]" data-bind="value: fields.contact_status" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_statuses}
+					<option value="{id}">{name}</option>
+					{/contact_statuses}
+				</select>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" data-bind="if: fields.created_by">
+	    	<label class="col-sm-3 control-label" for="contact_status">Created by</label>
+		    <div class="col-sm-6 control-readonly">
+				<span data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+			</div>
+		</div>
+		<div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+	    	<label class="col-sm-3 control-label" for="contact_status">Updated by</label>
+		    <div class="col-sm-6 control-readonly">
+				<span data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+			</div>
+		</div>
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+				<a id="btn-save-tenant" href="" class="btn btn-success btn-lg btn-responsive" role="button">Save Tenant</a>
+			</div>
+		</div>
+	</fieldset>

@@ -1,0 +1,110 @@
+<form class="form-horizontal">
+	<div id="fields-container">
+		<input id="leaseagreement_id" type="hidden" name="property[id]" data-bind="value: fields.id" value=""/>
+
+		<!-- PROPERTY -->
+		<fieldset id="property-fieldset">
+			<legend>Property</legend>
+			<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.property.hasError }">
+		    	<label class="col-sm-3 control-label" for="leaseagreement_property">Address</label>
+			    <div class="col-sm-6">
+			    	<input id="leaseagreement_property" type="hidden" name="leaseagreement[property]" data-bind="smartComboProperty: fields.property"  value=""/>
+			    	<span class="help-block" data-bind="visible: fields.property.hasError, text: fields.property.validationMessage"></span>
+				</div>
+			</div>
+		</fieldset>
+
+	<!-- BASIC INFORMATION -->
+	<fieldset id="basic-fieldset">
+		<legend>Basic information</legend>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.start_date.hasError }">
+	    	<label class="col-sm-3 control-label" for="leaseagreement_start_date">Start date</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="leaseagreement_start_date" placeholder="" name="leaseagreement[start_date]" data-bind="datePickerFreeDate: fields.start_date, value: fields.start_date"/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+	    		<span class="help-block" data-bind="visible: fields.start_date.hasError, text: fields.start_date.validationMessage"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.end_date.hasError }">
+	    	<label class="col-sm-3 control-label" for="leaseagreement_end_date">End date</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="leaseagreement_end_date" placeholder="" name="leaseagreement[end_date]" data-bind="datePickerDueDate: fields.end_date, value: fields.end_date" value=""/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+	    		<span class="help-block" data-bind="visible: fields.end_date.hasError, text: fields.end_date.validationMessage"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="leaseagreement_review_date">Review date</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="leaseagreement_review_date" placeholder="" name="leaseagreement[review_date]" data-bind="datePickerDueDate: fields.review_date, value: fields.review_date" value=""/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="leaseagreement_core_lease_charge_per_week">Core lease charge per week</label>
+		    <div class="col-sm-6">
+				<div class="input-group">
+					<div class="input-group-addon">&pound;</div>
+					<input class="form-control" type="text" placeholder="" name="leaseagreement[core_lease_charge_per_week]" value="" data-bind="value: fields.core_lease_charge_per_week, valueUpdate: 'input'"/>
+				</div>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- FILES -->
+	<fieldset id="basic-fieldset">
+		<legend>Files</legend>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.input_lease_agreement.hasError }">
+			<label class="col-sm-3 control-label">Upload lease agreement</label>
+		    <div class="col-sm-6 inputfile-container" data-bind="template: {name:'my-file', data: {field: fields.input_lease_agreement, fileType: 'documents'}}"></div>
+		</div>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.input_management_agreement.hasError }">
+			<label class="col-sm-3 control-label">Upload management agreement</label>
+			<div class="col-sm-6 inputfile-container" data-bind="template: {name:'my-file', data: {field: fields.input_management_agreement, fileType: 'documents'}}"></div>
+		</div>
+	</fieldset>
+
+		<!-- ADMINISTRATION -->
+		<fieldset id="administration-fieldset">
+			<legend>Administration</legend>
+
+			<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.owner.hasError }">
+		    	<label class="col-sm-3 control-label" for="leaseagreement_owner">Owner</label>
+			    <div class="smartcombo-container col-sm-6">
+			    	<input id="leaseagreement_owner" type="hidden" name="leaseagreement[owner]"  data-bind="smartComboUserContact: fields.owner, withCreate: false" value=""/>
+			    	<span class="help-block" data-bind="visible: fields.owner.hasError, text: fields.owner.validationMessage"></span>
+				</div>
+			</div>
+		    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+		        <label class="col-sm-3 control-label" for="leaseagreement_created_by">Created by</label>
+		        <div class="col-sm-6 control-readonly">
+		        <span id="leaseagreement_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+		      </div>
+		    </div>
+		    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+		        <label class="col-sm-3 control-label" for="leaseagreement_updated_by">Updated by</label>
+		        <div class="col-sm-6 control-readonly">
+		        <span id="leaseagreement_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+		      </div>
+		    </div>
+
+			<div class="form-group form-group-lg">
+				<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+					<a id="btn-save-leaseagreement" href="" class="btn btn-success btn-lg btn-responsive" role="button" data-bind="css: { 'disabled': fields.formHasError() }">Save Lease Agreement</a>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</form>

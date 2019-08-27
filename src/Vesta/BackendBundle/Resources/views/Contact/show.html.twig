@@ -1,0 +1,78 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <a href="{{ path('app_backend_contact_index') }}" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i><span> Back to contact list</span></a>
+              </div>
+              <div class="pull-right">
+                  <a href="{{ path('app_backend_contact_edit',{"id": contact.id}) }}" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-pencil"></i><span> Edit contact</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-left">
+              <h1 class="page-header">{{ contact.fullname }}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+          {% if contact.contacttype.id==1 %}
+          	{% include 'AppBackendBundle:Contact:_show_landlord.html.twig' %}
+          {% elseif contact.contacttype.id==2 %}
+          	{% include 'AppBackendBundle:Contact:_show_tenant.html.twig' %}
+          {% elseif contact.contacttype.id==3 %}
+            {% include 'AppBackendBundle:Contact:_show_contractor.html.twig' %}
+          {% elseif contact.contacttype.id==4 %}
+          	{% include 'AppBackendBundle:Contact:_show_other.html.twig' %}
+          {% endif %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                  <a href="{{ path('app_backend_contact_index') }}" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i><span> Back to contact list</span></a>
+              </div>
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'show';
+      data.contact = {{ contact|serialize('json', context)|raw }};
+      data.tenant_conditions = {{ tenant_conditions|serialize('json')|raw }};
+      return data;
+    });
+
+    {% if contact.contacttype.id==1 %}
+    require(["/js/common.js"], function(common){
+      require(['app/modules/contacts/controller/show_landlord.controller']);
+    });
+    {% elseif contact.contacttype.id==2 %}
+    require(["/js/common.js"], function(common){
+      require(['app/modules/contacts/controller/show_tenant.controller']);
+    });
+    {% elseif contact.contacttype.id==3 %}
+    require(["/js/common.js"], function(common){
+      require(['app/modules/contacts/controller/show_contractor.controller']);
+    });
+    {% else %}
+    require(["/js/common.js"], function(common){
+      require(['app/modules/contacts/controller/show.controller']);
+    });
+    {% endif %}
+  </script>
+{% endblock %}

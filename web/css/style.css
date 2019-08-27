@@ -1,0 +1,178 @@
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: #E0EAF8;
+}
+
+.form-group.required > .control-label:after {
+   content:"*";
+   color:red;
+   font-weight: bolder;
+}
+/* No compatible con el nuevo boton input-group-btn
+.tenants-rows-container .custom-combobox {
+  display: inline-block;
+  position: absolute;
+  width: 90%;
+}*/
+
+.custom-combobox-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /*margin-left: -1px;*/
+  padding: 0;
+  right: 14px;
+}
+
+.tenants-rows-container  .custom-combobox-toggle {
+  right: -2px;
+}
+
+.custom-combobox-input {
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.form-control.investment-distance {
+  width: 50%;
+  display: inline;
+}
+
+.form-control.investment-postcode {
+  width: 50%;
+  display: inline;
+}
+
+fieldset[disabled], fieldset[disabled] legend {
+  background: #F8F8F8;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: #E8E8E8;
+  opacity: 0.65;
+}
+
+.text-right.btn-group > .btn {
+  float: right;
+  position: relative;
+  margin-left: 5px;
+}
+
+.form-horizontal .form-group-lg .control-readonly {
+  padding-top: 18px;
+}
+
+.form-horizontal .control-readonly {
+  margin-bottom: 0;
+  padding-top: 7px;
+  text-align: left;
+}
+
+.form-control.area-distance {
+  width: 50%;
+  display: inline;
+}
+
+.form-control.area-postcode {
+  width: 50%;
+  display: inline;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-top-30 {
+  margin-top: 30px;
+}
+
+.margin-top-40 {
+  margin-top: 40px;
+}
+
+.btn-file-right {
+  float: right;
+}
+
+.input-group.date .input-group-addon {
+  cursor: pointer;
+}
+
+.input-group.date .input-group-addon[disabled] {
+  cursor: not-allowed;
+}
+
+.cbx-disabled {
+  background-color: #e8e8e8 !important;
+  color: #555;
+}
+
+#support-fieldset ul{
+  list-style-type: none;
+}
+
+.form-control-50 {
+  width: 50%;
+  display: inline-block;
+}
+.form-control-30 {
+  width: 30%;
+  display: inline-block;
+}
+.form-control-20 {
+  width: 20%;
+  display: inline-block;
+}
+
+.form-horizontal .form-control-parking-for {
+  width: 130px;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+}
+
+.margin-left-20 {
+  margin-left: 20px;
+}
+
+.smartcombo-container {
+   height: auto;
+   /*border: 1px dashed blue;*/
+}
+
+.smartcombo-with-create {
+  height: 80px;
+  border: 1px dashed red;
+}
+
+.tenants-rows-container .smartcombo-container {
+  margin-top: 10px;
+}
+
+fieldset[disabled] a.btn-activate-edition {
+  cursor: pointer;
+  opacity: 1;
+  pointer-events: auto;
+  background-color: #337ab7;
+  border-color: #245580;
+}
+
+.panel-primary .panel-heading a {color: #fff;}
+
+@media (max-width: 700px) {
+
+  .form-horizontal .form-group-lg .control-readonly {
+    padding-top: 0px;
+  }
+}
+@media (max-width: 768px) {
+
+	.btn-responsive {
+        display: block;
+        width: 100%;
+	}
+
+}

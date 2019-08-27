@@ -1,0 +1,122 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">Risk assessment for {{ contact.fullname }}</h1>
+              </div>
+              <div class="pull-right">
+                  <a href="#" class="btn btn-primary btn-lg" onclick="history.back(); return false;"><i class="glyphicon glyphicon-chevron-left"></i><span> Back</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              {% for category in categories %}
+              <div class="panel panel-default category-container">
+                <div class="panel-heading" role="tab" id="category-header-{{ category.id }}">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#category-body-{{ category.id }}" aria-expanded="{{ (loop.index > 1)?"false":"true"}}" aria-controls="category-body-{{ category.id }}">
+                      {{ category.name }} (<span data-bind="text: fields.done()"></span> of <span data-bind="text: fields.total()"></span>)
+                    </a>
+                  </h4>
+                </div>
+                <div id="category-body-{{ category.id }}" class="panel-collapse collapse {{ (loop.index > 1)?"":"in"}}" role="tabpanel" aria-labelledby="category-header-{{ category.id }}">
+                  <div class="panel-body">
+                    {% for question in category.activeQuestions %}
+                      <!-- ko stopBinding: true -->
+                      <form class="form-horizontal risk-assessment-question">
+                        <input type="hidden" name="risk_assessment[question]" value="{{ question.id }}" data-bind="value: fields.question"/>
+                        <fieldset id="basic-fieldset" data-bind="attr: {'disabled': fields.isSaved }">
+                          <legend>{{ question.title }}</legend>
+                          <div class="form-group form-group-lg">
+                            <label class="col-sm-3 control-label"></label>
+                              <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-3">
+                                  <input type="radio" name="risk_assessment[answer]" value="0" data-bind="checked: fields.answer" />&nbsp;<label class="control-label">No</label>
+                                </div>
+                                <div class="col-sm-12 col-md-9">
+                                  <input type="radio" name="risk_assessment[answer]" value="1" data-bind="checked: fields.answer, click: $root.popup"/>&nbsp;<label class="control-label">Yes</label>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group required form-group-lg" data-bind="visible: fields.showMoreFields(), css: { 'has-error': fields.comments.hasError }" style="display:none">
+                            <label class="col-sm-3 control-label">Comments</label>
+                            <div class="col-sm-6">
+                              <textarea class="form-control" placeholder="" name="risk_assessment[comments]"  data-bind="value: fields.comments, valueUpdate: 'keyup'" rows="6" style="height:auto;"></textarea>
+                              <span class="help-block" data-bind="visible: fields.comments.hasError, text: fields.comments.validationMessage"></span>
+                            </div>
+                          </div>
+                          <div class="form-group required form-group-lg" data-bind="visible: fields.showMoreFields(), css: { 'has-error': fields.level_of_risk.hasError }" style="display:none">
+                              <label class="col-sm-3 control-label">Level of risk</label>
+                              <div class="col-sm-6">
+                              <select name="risk_assessment[level_of_risk]" data-bind="value: fields.level_of_risk" class="form-control">
+                                <option value="">Choose one</option>
+                                {% for level in levels_of_risk %}
+                                <option value="{{ level.id }}">{{ level.name }}</option>
+                                {% endfor %}
+                              </select>
+                              <span class="help-block" data-bind="visible: fields.level_of_risk.hasError, text: fields.level_of_risk.validationMessage"></span>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-lg" data-bind="visible: fields.showMoreFields()" style="display:none">
+                            <label class="col-sm-3 control-label">Future action needed?</label>
+                              <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-3">
+                                  <input type="radio" name="risk_assessment[action_needed]" value="0" data-bind="checked: fields.action_needed" />&nbsp;<label class="control-label">No</label>
+                                </div>
+                                <div class="col-sm-12 col-md-9">
+                                  <input type="radio" name="risk_assessment[action_needed]" value="1" data-bind="checked: fields.action_needed"/>&nbsp;<label class="control-label">Yes</label>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group required form-group-lg" data-bind="visible: fields.showAssociatedTask(), css: { 'has-error': fields.associated_task.hasError }" style="display:none">
+                              <label class="col-sm-3 control-label">Associated task</label>
+                              <div class="smartcombo-container col-sm-6">
+                                <input id="associated_task_{{ question.id }}" type="hidden" name="risk_assessment[task]"  data-bind="smartComboTicket: fields.associated_task, withCreate: true, defaults: {status: {id: 1, name: 'Outstanding'}, ticket_type: {id: 9, name: 'Miscellaneous'}, read_by: {}, related_contacts: [{id: {{ contact.id }}, fullname: '{{ contact.fullname }}', contact_type: {name: 'bla bla bla'}}]}" value="" />
+                                <span class="help-block" data-bind="visible: fields.associated_task.hasError, text: fields.associated_task.validationMessage"></span>
+                            </div>
+                          </div>
+                          <div class="form-group form-group-lg">
+                            <div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+                              <a href="#" class="btn btn-primary btn-sm btn-responsive btn-activate-edition" role="button" data-bind="click: $root.startEdit, visible: fields.isSaved()" style="display:none"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>
+                              <a href="#" class="btn btn-success btn-sm btn-responsive" role="button" data-bind="css: { 'disabled': fields.formHasError() }, click: $root.save, visible: !fields.isSaved() && fields.showMoreFields()" style="display:none"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Save</a>
+                            </div>
+                          </div>
+                      </fieldset>
+                      </form>
+                      <!-- /ko -->
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'edit';
+      data.contact = {{ contact|serialize('json', context)|raw }};
+      return data;
+
+    });
+
+    require(["/js/common.js"], function(common){
+      require(['app/modules/contacts/controller/risks.controller']);
+    });
+  </script>
+{% endblock %}

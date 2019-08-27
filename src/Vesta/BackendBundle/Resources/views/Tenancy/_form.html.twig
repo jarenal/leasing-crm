@@ -1,0 +1,132 @@
+<form class="form-horizontal">
+	<div id="fields-container">
+	<input id="tenancy_id" type="hidden" name="property[id]" data-bind="value: fields.id" value=""/>
+
+	<!-- BASIC INFORMATION -->
+	<fieldset id="basic-information-fieldset">
+		<legend>Basic information</legend>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.start_date.hasError }">
+	    	<label class="col-sm-3 control-label" for="tenancy_start_date">Start date</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="tenancy_start_date" placeholder="" name="tenancy[start_date]" data-bind="datePickerFreeDate: fields.start_date, value: fields.start_date"/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+	    		<span class="help-block" data-bind="visible: fields.start_date.hasError, text: fields.start_date.validationMessage"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.end_date.hasError }">
+	    	<label class="col-sm-3 control-label" for="tenancy_end_date">End date</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="tenancy_end_date" placeholder="" name="tenancy[end_date]" data-bind="datePickerDueDate: fields.end_date, value: fields.end_date" value=""/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+	    		<span class="help-block" data-bind="visible: fields.end_date.hasError, text: fields.end_date.validationMessage"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="tenancy_review_date">Review date</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="tenancy_review_date" placeholder="" name="tenancy[review_date]" data-bind="datePickerDueDate: fields.review_date, value: fields.review_date" value=""/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.tenancy_type.hasError }">
+	    	<label class="col-sm-3 control-label" for="tenancy_review_date">Tenancy type</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<select name="tenancy[type]" class="form-control" data-bind="value: fields.tenancy_type">
+		    			<option value="">Choose one</option>
+		    			<option value="Single">Single</option>
+		    			<option value="Joint">Joint</option>
+		    			<option value="Shared">Shared</option>
+		    		</select>
+		    		<span class="help-block" data-bind="visible: fields.tenancy_type.hasError, text: fields.tenancy_type.validationMessage"></span>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.property.hasError }">
+	    	<label class="col-sm-3 control-label" for="tenancy_property">Property</label>
+		    <div class="col-sm-6">
+		    	<input id="tenancy_property" type="hidden" name="tenancy[property]" data-bind="smartComboProperty: fields.property"  value=""/>
+		    	<span class="help-block" data-bind="visible: fields.property.hasError, text: fields.property.validationMessage"></span>
+			</div>
+		</div>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.tenants.hasError }">
+			<label class="col-sm-3 control-label" for="tenancy_review_date">Tenants</label>
+		    <div class="col-sm-6">
+		      <div class="panel panel-default">
+		        <div class="panel-body">
+		          <table id="table-tenants"></table>
+				  <div class="col-xs-12 margin-top-10">
+				    <input id="search_tenant" type="hidden" name="search_tenant" value="" data-bind="smartComboTenant: fields.search_tenant, withCreate: false"/>
+				    <span class="help-block" data-bind="visible: fields.tenants.hasError, text: fields.tenants.validationMessage"></span>
+				  </div>
+				  <div style="clear:both"></div>
+				  <div class="col-xs-12 text-right">
+				  	<a href="" class="btn btn-success btn-sm btn-responsive" role="button" data-bind="css: { 'disabled': fields.emptySearch() }, click: function(data, event){ addTenant(''); }"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Add tenant</a>
+				  </div>
+		        </div>
+		      </div>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- FILES -->
+	<fieldset id="basic-fieldset">
+		<legend>Files</legend>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.tenancy_agreement_file.hasError }">
+			<label class="col-sm-3 control-label">Upload tenancy agreement</label>
+		    <div class="col-sm-6 inputfile-container" data-bind="template: {name:'my-file', data: {field: fields.tenancy_agreement_file, fileType: 'documents'}}"></div>
+		</div>
+		<div class="form-group form-group-lg" data-bind="css: { 'has-error': fields.tenancy_agreement_visual_file.hasError }">
+			<label class="col-sm-3 control-label">Upload easy read tenancy agreement</label>
+			<div class="col-sm-6 inputfile-container" data-bind="template: {name:'my-file', data: {field: fields.tenancy_agreement_visual_file, fileType: 'documents'}}"></div>
+		</div>
+		<div class="form-group form-group-lg" data-bind="css: { 'has-error': fields.service_level_agreement_file.hasError }">
+			<label class="col-sm-3 control-label">Upload service level agreement</label>
+			<div class="col-sm-6 inputfile-container" data-bind="template: {name:'my-file', data: {field: fields.service_level_agreement_file, fileType: 'documents'}}"></div>
+		</div>
+	</fieldset>
+
+	<!-- ADMINISTRATION -->
+	<fieldset id="administration-fieldset">
+		<legend>Administration</legend>
+
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.owner.hasError }">
+	    	<label class="col-sm-3 control-label" for="tenancy_owner">Owner</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="tenancy_owner" type="hidden" name="tenancy[owner]"  data-bind="smartComboUserContact: fields.owner, withCreate: false" value=""/>
+		    	<span class="help-block" data-bind="visible: fields.owner.hasError, text: fields.owner.validationMessage"></span>
+			</div>
+		</div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+	        <label class="col-sm-3 control-label" for="tenancy_created_by">Created by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="tenancy_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+	      </div>
+	    </div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+	        <label class="col-sm-3 control-label" for="tenancy_updated_by">Updated by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="tenancy_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+	      </div>
+	    </div>
+
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+				<a id="btn-save-tenancy" href="" class="btn btn-success btn-lg btn-responsive" role="button" data-bind="css: { 'disabled': fields.formHasError() }">Save tenancy</a>
+			</div>
+		</div>
+	</fieldset>
+	</div>
+</form>

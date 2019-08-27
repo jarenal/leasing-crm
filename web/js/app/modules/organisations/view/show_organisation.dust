@@ -1,0 +1,92 @@
+  <!-- BASIC DETAILS -->
+  <fieldset id="basic-details-fieldset">
+    <legend>Basic details</legend>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_type">Type</label>
+          <div class="col-sm-6 control-readonly">
+            <span id="organisation_type" data-bind="text: fields.organisation_type_name"></span>
+          </div>
+      </div>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_name">Name</label>
+          <div class="col-sm-6 control-readonly">
+            <span id="organisation_name" data-bind="text: fields.name"></span>
+        </div>
+      </div>
+  </fieldset>
+
+  <!-- CONTACT DETAILS -->
+  <fieldset id="contact-details-fieldset">
+    <legend>Contact details</legend>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_phone">Phone</label>
+          <div class="col-sm-6 control-readonly">
+            <span id="organisation_phone" data-bind="text: fields.phone"></span>
+        </div>
+      </div>
+
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_email">Email</label>
+          <div class="col-sm-6 control-readonly">
+            <a id="organisation_email" data-bind="text: fields.email, attr: {href: '#'}, click: function(){ window.location='mailto:'+fields.email();}" target="_blank"></a>
+        </div>
+      </div>
+
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_website">Website</label>
+          <div class="col-sm-6 control-readonly">
+            <a id="organisation_website" data-bind="text: fields.website, attr: {href: fields.website}" target="_blank"></a>
+        </div>
+      </div>
+  </fieldset>
+
+  <!-- ADDRESS -->
+  <fieldset id="address-fieldset">
+    <legend>Address</legend>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_address">Address</label>
+          <div class="col-sm-6 control-readonly">
+            <span id="organisation_address" data-bind="text: fields.address"></span>
+        </div>
+      </div>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_town">Town</label>
+          <div class="col-sm-6 control-readonly">
+            <span id="organisation_town" data-bind="text: fields.town"></span>
+        </div>
+      </div>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_postcode">Postcode</label>
+          <div class="col-sm-6 control-readonly">
+            <span id="organisation_postcode" data-bind="text: fields.postcode"></span>
+        </div>
+      </div>
+  </fieldset>
+
+  <!-- MISCELLANEOUS -->
+  <fieldset id="miscellaneous-fieldset">
+    <legend>Miscellaneous</legend>
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label" for="organisation_comments">Comments:</label>
+        <div class="col-sm-6 control-readonly">
+          <span id="organisation_comments" data-bind="text: fields.comments"></span>
+        </div>
+    </div>
+  </fieldset>
+
+  <!-- ADMINISTRATION -->
+  <fieldset id="administration-fieldset">
+    <legend>Administration</legend>
+    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+        <label class="col-sm-3 control-label" for="organisation_created_by">Created by</label>
+        <div class="col-sm-6 control-readonly">
+        <span id="organisation_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+      </div>
+    </div>
+    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+        <label class="col-sm-3 control-label" for="organisation_updated_by">Updated by</label>
+        <div class="col-sm-6 control-readonly">
+        <span id="organisation_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+      </div>
+    </div>
+  </fieldset>

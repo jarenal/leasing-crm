@@ -1,0 +1,141 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">Lease agreement details</h1>
+              </div>
+              <div class="pull-right">
+                  <a href="#" class="btn btn-primary btn-lg" onclick="history.back(); return false;"><i class="glyphicon glyphicon-chevron-left"></i><span> Back</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+            <form class="form-horizontal">
+              <div id="fields-container">
+                <input id="leaseagreement_id" type="hidden" name="property[id]" data-bind="value: fields.id" value=""/>
+
+                <!-- PROPERTY -->
+                <fieldset id="property-fieldset">
+                  <legend>Property</legend>
+                  <div class="form-group form-group-lg">
+                      <label class="col-sm-3 control-label" for="leaseagreement_property">Address</label>
+                      <div class="col-sm-6 control-readonly">
+                        <span data-bind="text: fields.property.fulltitle"></span>
+                      </div>
+                  </div>
+                </fieldset>
+
+              <!-- BASIC INFORMATION -->
+              <fieldset id="basic-fieldset">
+                <legend>Basic information</legend>
+                <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label" for="leaseagreement_start_date">Start date</label>
+                    <div class="col-sm-6 control-readonly">
+                      <span data-bind="text: fields.start_date"></span>
+                    </div>
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label" for="leaseagreement_end_date">End date</label>
+                    <div class="col-sm-6 control-readonly">
+                      <span data-bind="text: fields.end_date"></span>
+                    </div>
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label" for="leaseagreement_review_date">Review date</label>
+                    <div class="col-sm-6 control-readonly">
+                      <span data-bind="text: fields.review_date"></span>
+                    </div>
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label" for="leaseagreement_core_lease_charge_per_week">Core lease charge per week</label>
+                    <div class="col-sm-6 control-readonly">
+                      <span data-bind="text: '&pound; '+fields.core_lease_charge_per_week()"></span>
+                    </div>
+                </div>
+              </fieldset>
+
+              <!-- FILES -->
+              <fieldset id="basic-fieldset">
+                <legend>Files</legend>
+                <div class="form-group form-group-lg">
+                  <label class="col-sm-3 control-label">Upload lease agreement</label>
+                  <div class="col-sm-6 control-readonly">
+                    <div class="input-group">
+                      <input class="form-control" type="text" name="myfile[]" data-bind="value: fields.input_lease_agreement.filename" disabled="disabled" />
+                      <div class="input-group-btn">
+                        <a href="#" class="btn btn-primary btn-lg" target="_blank" data-bind="attr: {href: fields.input_lease_agreement.permalink}"><i class="glyphicon glyphicon-eye-open"></i> Open</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group form-group-lg">
+                  <label class="col-sm-3 control-label">Upload management agreement</label>
+                  <div class="col-sm-6 control-readonly">
+                    <div class="input-group">
+                      <input class="form-control" type="text" name="myfile[]" data-bind="value: fields.input_management_agreement.filename" disabled="disabled" />
+                      <div class="input-group-btn">
+                        <a href="#" class="btn btn-primary btn-lg" target="_blank" data-bind="attr: {href: fields.input_management_agreement.permalink}"><i class="glyphicon glyphicon-eye-open"></i> Open</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+                <!-- ADMINISTRATION -->
+                <fieldset id="administration-fieldset">
+                  <legend>Administration</legend>
+
+                  <div class="form-group form-group-lg">
+                      <label class="col-sm-3 control-label" for="leaseagreement_owner">Owner</label>
+                      <div class="col-sm-6 control-readonly">
+                        <span data-bind="text: fields.owner.fullname"></span>
+                    </div>
+                  </div>
+                    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+                        <label class="col-sm-3 control-label" for="leaseagreement_created_by">Created by</label>
+                        <div class="col-sm-6 control-readonly">
+                        <span id="leaseagreement_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+                      </div>
+                    </div>
+                    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+                        <label class="col-sm-3 control-label" for="leaseagreement_updated_by">Updated by</label>
+                        <div class="col-sm-6 control-readonly">
+                        <span id="leaseagreement_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+                      </div>
+                    </div>
+                </fieldset>
+              </div>
+            </form>
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'show';
+      data.lease_agreement = {{ lease_agreement|serialize('json', context)|raw }};
+      return data;
+
+    });
+
+    require(["/js/common.js"], function(common){
+      require(['app/modules/leaseagreement/controller/show.controller']);
+    });
+  </script>
+{% endblock %}
+
+
+
+

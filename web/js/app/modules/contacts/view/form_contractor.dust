@@ -1,0 +1,246 @@
+	<input id="contact_id" type="hidden" name="contact[id]" data-bind="value: fields.id" value=""/>
+	<input id="contact_type" type="hidden" name="contact[id]" data-bind="value: fields.contact_type" value=""/>
+
+	<!-- ORGANISATION -->
+	<fieldset id="organisation-fieldset">
+		<legend>Organisation</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_support_provider">Name</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="contact_organisation" type="hidden" name="contact[organisation]" value="" data-bind="smartComboOrganisation: fields.organisation, withCreate: true, auto_fill_address: true"/>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- BASIC DETAILS -->
+	<fieldset id="basic-details-fieldset">
+		<legend>Basic Details</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_title">Title</label>
+		    <div class="col-sm-6">
+				<select id="contact_title" name="contact[contact_title]" data-bind="value: fields.contact_title" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_titles}
+					<option value="{id}">{name}</option>
+					{/contact_titles}
+				</select>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_name">First name</label>
+	    	<div class="col-sm-6">
+	      		<input class="form-control" type="text" id="contact_name" placeholder="" name="contact[name]" data-bind="value: fields.name" value=""/>
+	    	</div>
+	    </div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_surname">Last name</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_surname" placeholder="" name="contact[surname]" data-bind="value: fields.surname" value=""/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- CONTACT DETAILS -->
+	<fieldset id="contact-details-fieldset">
+		<legend>Contact Details</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_email">Email</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_email" placeholder="user@example.com" name="contact[email]" data-bind="value: fields.email" value=""/>
+		    </div>
+	  	</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_landline">Landline</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_landline" placeholder="" name="contact[landline]" data-bind="value: fields.landline" value=""/>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_mobile">Mobile</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_mobile" placeholder="" name="contact[mobile]" data-bind="value: fields.mobile" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_method">Preferred contact method</label>
+		    <div class="col-sm-6">
+				<select id="contact_method" name="contact[contact_method]" data-bind="value: fields.contact_method" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_methods}
+					<option value="{id}">{name}</option>
+					{/contact_methods}
+				</select>
+			</div>
+		</div>
+		<div id="contact_method_other_row" class="form-group form-group-lg" style="display:none">
+	    	<label class="col-sm-3 control-label" for="contact_method_other">Specify other contact method</label>
+		    <div class="col-sm-6">
+		    	<input class="form-control" type="text" id="contact_method_other" name="contact[method_other]" data-bind="value: fields.contact_method_other" value=""/>
+		    </div>
+	  	</div>
+	</fieldset>
+
+	<!-- ADDRESS -->
+	<fieldset id="address-fieldset">
+		<legend>Address</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_address">Address</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_address" placeholder="" name="contact[address]" data-bind="value: fields.address" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_town">Town</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_town" placeholder="" name="contact[town]" data-bind="value: fields.town" value=""/>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_postcode">Postcode</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="contact_postcode" placeholder="" name="contact[postcode]" data-bind="value: fields.postcode" value=""/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- WORKS AND CERTIFICATION -->
+	<fieldset id="works-fieldset">
+		<legend>Works and certification</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-md-3 control-label">Type of works</label>
+	    	<div class="clearfix visible-sm-block"></div>
+		    <div class="col-sm-12 col-md-6 col-lg-7">
+		    	<div class="row">
+		    		{#contractor_services}
+		    		<div class="col-xs-4 col-sm-6 col-md-6 col-lg-4">
+						<label class="checkbox-inline cbx-label">
+							<input  id="contact_service_{id}" type="checkbox" value="{id}" name="contact[services]" data-bind="checked: fields.services"> {name}
+						</label>
+		    		</div>
+		    		{/contractor_services}
+		    	</div>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-md-3 control-label" for="contact_require_certification">Do they require any certification?</label>
+			<div class="clearfix visible-sm-block"></div>
+		    <div class="col-sm-12 col-md-6">
+		    	<div class="row">
+			    	<div class="col-sm-12 col-md-3 col-lg-2 col-md-offset-1">
+				    	<input type="radio" name="contact[require_certification]" value="1" data-bind="checked: fields.require_certification"/>&nbsp;<label class="control-label">Yes</label>
+			    	</div>
+			    	<div class="clearfix visible-sm-block"></div>
+			    	<div class="col-sm-12 col-md-8">
+				    	<input type="radio" name="contact[require_certification]" checked="checked" value="0" data-bind="checked: fields.require_certification" />&nbsp;<label class="control-label">No</label>
+			    	</div>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg margin-top-30">
+			<label class="col-sm-3 control-label">Certification file</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group input-certification-file-readonly" style="display:none">
+			    	<input class="form-control" type="text" name="contact_file_certification" value="{contact.file_certification}" disabled="disabled" />
+			    	<div class="input-group-btn">
+			    		<a href="/uploads/contacts/{contact.token}/documents/{contact.file_certification}" class="btn btn-primary btn-lg" target="_blank"><i class="glyphicon glyphicon-eye-open"></i> Open</a>
+			    		<a id="btn-remove-file-certification" href="#" class="btn btn-danger btn-lg" data-token="{contact.token}" data-filename="{contact.file_certification}" data-type="certification"><i class="glyphicon glyphicon-remove"></i> Remove</a>
+			    	</div>
+				</div>
+	    		<input id="contact_certification_file" type="file" name="contact[file_certification]" data-bind="value: fields.input_file_certification"
+	    		/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- INSURANCE -->
+	<fieldset id="insurance-fieldset">
+		<legend>Insurance</legend>
+		<div class="form-group form-group-lg">
+			<label class="col-md-3 control-label" for="contact_liability_insurance">Do they have public liability insurance?</label>
+			<div class="clearfix visible-sm-block"></div>
+		    <div class="col-sm-12 col-md-6">
+		    	<div class="row">
+			    	<div class="col-sm-12 col-md-3 col-lg-2 col-md-offset-1">
+				    	<input type="radio" name="contact[liability_insurance]" value="1" data-bind="checked: fields.liability_insurance"/>&nbsp;<label class="control-label">Yes</label>
+			    	</div>
+			    	<div class="clearfix visible-sm-block"></div>
+			    	<div class="col-sm-12 col-md-8">
+				    	<input type="radio" name="contact[liability_insurance]" checked="checked" value="0" data-bind="checked: fields.liability_insurance" />&nbsp;<label class="control-label">No</label>
+			    	</div>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg margin-top-30">
+	    	<label class="col-sm-3 control-label">Insurance file</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group input-insurance-file-readonly" style="display:none">
+			    	<input class="form-control" type="text" name="contact_file_insurance" value="{contact.file_insurance}" disabled="disabled" />
+			    	<div class="input-group-btn">
+			    		<a href="/uploads/contacts/{contact.token}/documents/{contact.file_insurance}" class="btn btn-primary btn-lg" target="_blank"><i class="glyphicon glyphicon-eye-open"></i> Open</a>
+			    		<a id="btn-remove-file-insurance" href="#" class="btn btn-danger btn-lg" data-token="{contact.token}" data-filename="{contact.file_insurance}" data-type="insurance"><i class="glyphicon glyphicon-remove"></i> Remove</a>
+			    	</div>
+				</div>
+	    		<input id="contact_insurance_file" type="file" name="contact[file_insurance]" data-bind="value: fields.input_file_insurance"
+	    		/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- AREA -->
+	<fieldset id="area-fieldset">
+		<legend>Area</legend>
+		<div id="areas-container">
+			<div id="areas-form-container"></div>
+			<div class="form-group form-group-lg">
+				<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right btn-group" role="group">
+					<a id="btn-stop-edit-areas" href="" class="btn btn-info btn-sm btn-responsive" role="button"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Stop edit areas</a>
+					<a id="btn-new-area" href="" class="btn btn-warning btn-sm btn-responsive" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New area</a>
+					<a id="btn-start-edit-areas" href="" class="btn btn-primary btn-sm btn-responsive" role="button" style="display:none"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Start edit areas</a>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- MISCELLANEOUS -->
+	<fieldset id="miscellaneous-fieldset">
+		<legend>Miscellaneous</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_comments">Comments</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" id="contact_comments" placeholder="" name="contact[comments]"  data-bind="value: fields.comments" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- ADMINISTRATION -->
+	<fieldset id="administration-fieldset">
+		<legend>Administration</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="contact_status">Status</label>
+		    <div class="col-sm-6">
+				<select id="contact_status" name="contact[contact_status]" data-bind="value: fields.contact_status" class="form-control">
+					<option value="0">Choose one</option>
+					{#contact_statuses}
+					<option value="{id}">{name}</option>
+					{/contact_statuses}
+				</select>
+			</div>
+		</div>
+		<div class="form-group form-group-lg" data-bind="if: fields.created_by">
+	    	<label class="col-sm-3 control-label" for="contact_status">Created by</label>
+		    <div class="col-sm-6 control-readonly">
+				<span data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+			</div>
+		</div>
+		<div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+	    	<label class="col-sm-3 control-label" for="contact_status">Updated by</label>
+		    <div class="col-sm-6 control-readonly">
+				<span data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+			</div>
+		</div>
+		<div class="form-group organisation-new form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+				<a id="btn-save-contractor" href="" class="btn btn-success btn-lg btn-responsive" role="button">Save Contractor</a>
+			</div>
+		</div>
+	</fieldset>

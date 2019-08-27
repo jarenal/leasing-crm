@@ -1,0 +1,68 @@
+app_api_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AppApiBundle:Default:index }
+
+app_api_organisations:
+    type: rest
+    resource: App\ApiBundle\Controller\OrganisationController
+    name_prefix: api_
+
+app_api_landlords:
+    type: rest
+    resource: App\ApiBundle\Controller\LandlordController
+    name_prefix: api_
+
+app_api_contacts:
+    type: rest
+    resource: App\ApiBundle\Controller\ContactController
+    name_prefix: api_
+
+app_api_contractors:
+    type: rest
+    resource: App\ApiBundle\Controller\ContractorController
+    name_prefix: api_
+
+app_api_tenants:
+    type: rest
+    resource: App\ApiBundle\Controller\TenantController
+    name_prefix: api_
+
+app_api_others:
+    type: rest
+    resource: App\ApiBundle\Controller\OtherController
+    name_prefix: api_
+
+app_api_properties:
+    type: rest
+    resource: App\ApiBundle\Controller\PropertyController
+    name_prefix: api_
+
+app_api_files:
+    type: rest
+    resource: App\ApiBundle\Controller\FileController
+    name_prefix: api_
+
+app_api_tickets:
+    type: rest
+    resource: App\ApiBundle\Controller\TicketController
+    name_prefix: api_
+
+app_api_users:
+    type: rest
+    resource: App\ApiBundle\Controller\UserController
+    name_prefix: api_
+
+app_api_leaseagreement:
+    type: rest
+    resource: App\ApiBundle\Controller\LeaseagreementController
+    name_prefix: api_
+
+app_api_tenancies:
+    type: rest
+    resource: App\ApiBundle\Controller\TenancyController
+    name_prefix: api_
+
+app_api_rentbreakdown:
+    type: rest
+    resource: App\ApiBundle\Controller\BreakdownController
+    name_prefix: api_

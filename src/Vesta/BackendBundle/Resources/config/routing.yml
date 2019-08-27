@@ -1,0 +1,6 @@
+logout:
+    path: /logout
+
+backend:
+    resource: "@AppBackendBundle/Controller"
+    type: annotation

@@ -1,0 +1,116 @@
+<form class="form-horizontal">
+	<div id="fields-container">
+	<input type="hidden" name="breakdown[id]" data-bind="value: fields.id" value=""/>
+	<input type="hidden" name="breakdown[tenancy]" data-bind="value: fields.tenancy" value=""/>
+
+	<!-- BASIC INFORMATION -->
+	<fieldset id="basic-information-fieldset">
+		<legend>Basic information</legend>
+		<div class="form-group form-group-lg required" data-bind="css: { 'has-error': fields.start_date.hasError }">
+	    	<label class="col-sm-3 control-label" for="breakdown_start_date">Start date</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="breakdown_start_date" placeholder="" name="breakdown[start_date]" data-bind="datePickerFreeDate: fields.start_date, value: fields.start_date"/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+	    		<span class="help-block" data-bind="visible: fields.start_date.hasError, text: fields.start_date.validationMessage"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="breakdown_recurring_rent_review">Recurring rent review</label>
+		    <div class="col-sm-3">
+	    		<input class="form-control" type="text" placeholder="" name="brekdown[recurring_rent_review]" data-bind="value: fields.recurring_rent_review" value=""/>
+		    </div>
+		    <div class="col-sm-3">
+		    	<div class="input-group date">
+		    		<select name="breakdown[recurring_rent_review_timescale]" class="form-control" data-bind="value: fields.recurring_rent_review_timescale">
+		    			<option value="">Choose one</option>
+		    			<option value="Weeks">Weeks</option>
+		    			<option value="Months">Months</option>
+		    			<option value="Years">Years</option>
+		    		</select>
+	    		</div>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- RENT BREAKDOWN -->
+	<fieldset id="basic-information-fieldset">
+		<legend>Rent breakdown - per tenancy per week</legend>
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-2">
+				<table class="table col-sm-12">
+					<tbody data-bind="foreach: fields.items">
+						<tr>
+							<th>
+								<label data-bind="text: name" class="control-label" style="font-size: 14px;"></label>
+								<a href="#" class="" data-toggle="tooltip" data-placement="auto" data-bind="visible: description, attr: {title: description}"><i class="glyphicon glyphicon-question-sign"></i></a>
+							</th>
+							<td>
+								<div class="input-group">
+									<div class="input-group-addon">&pound;</div>
+									<input class="form-control" type="text" placeholder="" name="items[]" value="" data-bind="value: value, valueUpdate: 'input'"/>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr class="active">
+							<th><label class="control-label" style="font-size: 18px;">Total core rent</label></th>
+							<td>
+								<div class="input-group">
+									<div class="input-group-addon">&pound;</div>
+									<input class="form-control" type="text" placeholder="" name="brekdown[total_core_rent]" value="" data-bind="value: fields.total_core_rent" disabled="disabled"/>
+								</div>
+							</td>
+						</tr>
+						<tr class="active">
+							<th><label class="control-label" style="font-size: 18px;">Total service charges</label></th>
+							<td>
+								<div class="input-group">
+									<div class="input-group-addon">&pound;</div>
+									<input class="form-control" type="text" placeholder="" name="brekdown[total_service_charges]" value="" data-bind="value: fields.total_service_charges" disabled="disabled"/>
+								</div>
+							</td>
+						</tr>
+						<tr class="active">
+							<th><label class="control-label" style="font-size: 18px;">Total</label></th>
+							<td>
+								<div class="input-group">
+									<div class="input-group-addon">&pound;</div>
+									<input class="form-control" type="text" placeholder="" name="brekdown[total]" value="" data-bind="value: fields.total" disabled="disabled" />
+								</div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- ADMINISTRATION -->
+	<fieldset id="administration-fieldset">
+		<legend>Administration</legend>
+	    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+	        <label class="col-sm-3 control-label" for="breakdown_created_by">Created by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="breakdown_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+	      </div>
+	    </div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+	        <label class="col-sm-3 control-label" for="breakdown_updated_by">Updated by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="breakdown_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+	      </div>
+	    </div>
+
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+				<a id="btn-save-breakdown" href="" class="btn btn-success btn-lg btn-responsive" role="button" data-bind="css: { 'disabled': fields.formHasError() }">Save rent breakdown</a>
+			</div>
+		</div>
+	</fieldset>
+	</div>
+</form>

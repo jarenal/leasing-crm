@@ -1,0 +1,250 @@
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+    <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Tasks</a></li>
+    <li role="presentation"><a href="#attachments" aria-controls="attachments" role="tab" data-toggle="tab">Attachments</a></li>
+</ul>
+<div class="tab-content margin-top-20">
+	<div role="tabpanel" class="tab-pane active" id="overview">
+		<div class="row">
+			<div class="col-xs-12">
+				<form class="form-horizontal">
+					<!-- TYPE -->
+					<fieldset>
+					<legend>Type</legend>
+					<div class="form-group form-group-lg">
+				    	<label class="col-sm-3 control-label" for="choose_contact_type">Contact type:</label>
+					    <div class="col-sm-6 control-readonly">
+					    	{{ contact.contacttype.name }}
+						</div>
+					</div>
+					</fieldset>
+					<!-- ORGANISATION -->
+					<fieldset id="organisation-fieldset">
+						<legend>Organisation</legend>
+						<div class="form-group form-group-lg organisation-search">
+					    	<label class="col-sm-3 control-label" for="contact_organisation">Organisation name:</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.organisation ? '<a href="'~ path("app_backend_organisation_show", {id: contact.organisation.id})~'">' ~ contact.organisation.name ~ '</a>': "" }}
+						    	{% endautoescape %}
+							</div>
+						</div>
+
+						<div id="organisation_form">
+						</div>
+					</fieldset>
+
+					<!-- BASIC DETAILS -->
+					<fieldset id="basic-details-fieldset">
+						<legend>Basic Details</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_title">Title:</label>
+						    <div class="col-sm-6 control-readonly">
+								{{ contact.contacttitle.name }}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_name">First name:</label>
+					    	<div class="col-sm-6 control-readonly">
+					      		{{ contact.name }}
+					    	</div>
+					    </div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_surname">Last name:</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.surname }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- CONTACT DETAILS -->
+					<fieldset id="contact-details-fieldset">
+						<legend>Contact Details</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_email">Email:</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.email?'<a href="mailto:'~contact.email~'">'~contact.email~'</a>' }}
+						    	{% endautoescape %}
+						    </div>
+					  	</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_landline">Landline:</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.landline }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_mobile">Mobile:</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.mobile }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_mobile">Contact method:</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.contactMethod ? contact.contactMethod.name : "" }}
+						    </div>
+						</div>
+						{% if contact.contactMethod %}
+							{% if contact.contactMethod.id==4 %}
+							<div class="form-group form-group-lg">
+						    	<label class="col-sm-3 control-label" for="contact_mobile">Other contact method:</label>
+							    <div class="col-sm-6 control-readonly">
+						    		{{ contact.contactMethodOther }}
+							    </div>
+							</div>
+							{% endif %}
+						{% endif %}
+					</fieldset>
+
+					<!-- ADDRESS -->
+					<fieldset id="address-fieldset">
+						<legend>Address</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_address">Address:</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.address }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_town">Town:</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.town }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_postcode">Postcode:</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.postcode }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- WORKS AND CERTIFICATION -->
+					<fieldset id="works-fieldset">
+						<legend>Works and certification</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-md-3 control-label">Type of works</label>
+					    	<div class="clearfix visible-sm-block"></div>
+						    <div class="col-sm-12 col-md-6 col-lg-7">
+						    	<div class="row">
+						    		{% for service in contact.services %}
+						    		<div class="col-xs-4 col-sm-6 col-md-6 col-lg-4">
+										<div class="control-readonly">
+											{{service.name}}
+										</div>
+						    		</div>
+						    		{% endfor %}
+						    	</div>
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+							<label class="col-md-3 control-label" for="contact_require_certification">Do they require any certification?</label>
+							<div class="clearfix visible-sm-block"></div>
+						    <div class="col-sm-12 col-md-6 control-readonly">{{ contact.requireCertification ? "Yes" : "No" }}</div>
+						</div>
+					</fieldset>
+
+					<!-- INSURANCE -->
+					<fieldset id="works-fieldset">
+						<legend>Insurance</legend>
+						<div class="form-group form-group-lg">
+							<label class="col-md-3 control-label" for="contact_liability_insurance">Do they have public liability insurance?</label>
+							<div class="clearfix visible-sm-block"></div>
+						    <div class="col-sm-12 col-md-6 control-readonly">{{ contact.liabilityInsurance ? "Yes" : "No" }}</div>
+						</div>
+					</fieldset>
+
+					<!-- AREA -->
+					<fieldset id="area-fieldset">
+						<legend>Areas</legend>
+						{% set counter = 1 %}
+						<div id="areas-container">
+							<div id="areas-form-container">
+								{% for area in contact.areas %}
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<div class="form-group form-group-lg">
+											<input type="hidden" name="area[id]" data-bind="value: fields.id" value=""/>
+											<input type="hidden" name="area[token]" class="area-token" data-bind="value: fields.token" value=""/>
+									    	<label class="col-xs-3 control-label" for="area_distance">Area #{{counter}}</label>
+										    <div class="col-xs-9 col-sm-7 col-md-5 control-readonly">{{ area.distance }}&nbsp;&nbsp;<label>miles of</label>&nbsp;&nbsp;{{ area.postcode }}&nbsp;&nbsp;<label>postcode</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								{% set counter = counter + 1 %}
+								{% endfor %}
+							</div>
+						</div>
+
+					</fieldset>
+
+					<!-- MISCELLANEOUS -->
+					<fieldset id="miscellaneous-fieldset">
+						<legend>Miscellaneous</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_comments">Comments</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.comments }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- ADMINISTRATION -->
+					<fieldset id="administration-fieldset">
+						<legend>Administration</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_status">Status:</label>
+						    <div class="col-sm-6 control-readonly">{{ contact.contactstatus.name}}</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_status">Created by</label>
+						    <div class="col-sm-6 control-readonly">
+								{{contact.createdBy ? contact.createdBy.name : ""}} ({{contact.createdAt|date("d/m/Y H:i:s")}})
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_status">Updated by</label>
+						    <div class="col-sm-6 control-readonly">
+								{{contact.updatedBy ? contact.updatedBy.name : ""}} ({{contact.updatedAt|date("d/m/Y H:i:s")}})
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div> <!-- overview tabpanel end -->
+
+	<div role="tabpanel" class="tab-pane" id="tasks">
+    	<div class="row">
+    		<div class="col-xs-12">
+    			<table id="table-tasks"></table>
+    		</div>
+		</div>
+	</div> <!-- task tabpanel end -->
+
+	<div role="tabpanel" class="tab-pane" id="attachments">
+    	<div class="row">
+    		<div class="col-xs-12">
+              <form class="form-horizontal">
+                <!-- FILES -->
+                <fieldset id="files-fieldset">
+                  <legend>Files</legend>
+                  <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label">Documents</label>
+                      <div class="col-sm-6">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <div id="table-attachments"></div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </fieldset>
+              </form>
+    		</div>
+		</div>
+	</div> <!-- attachments tabpanel end -->
+</div> <!-- tab-content end -->

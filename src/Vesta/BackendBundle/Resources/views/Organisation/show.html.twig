@@ -1,0 +1,84 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <a href="{{ path('app_backend_organisation_index') }}" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i><span> Back to organisations list</span></a>
+              </div>
+              <div class="pull-right">
+                  <a href="{{ path('app_backend_organisation_edit',{"id": organisation.id}) }}" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-pencil"></i><span> Edit organisation</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">Organisation details</h1>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+                <li role="presentation"><a href="#contacts" aria-controls="contacts" role="tab" data-toggle="tab">Contacts</a></li>
+            </ul>
+            <div class="tab-content margin-top-20">
+              <div role="tabpanel" class="tab-pane active" id="overview">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <form class="form-horizontal">
+                      <div id="fields-container">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div> <!-- overview tabpanel end -->
+
+              <div role="tabpanel" class="tab-pane" id="contacts">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <table id="table-contacts"></table>
+                    </div>
+                </div>
+              </div> <!-- contacts tabpanel end -->
+
+            </div> <!-- tab-content end -->
+          </div> <!-- box end -->
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                  <a href="{{ path('app_backend_organisation_index') }}" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i><span> Back to organisations list</span></a>
+              </div>
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'show';
+      data.organisation = {{ organisation|serialize('json', context)|raw }};
+      return data;
+
+    });
+
+    require(["/js/common.js"], function(common){
+      require(['app/modules/organisations/controller/show.controller']);
+    });
+  </script>
+{% endblock %}
+
+
+
+

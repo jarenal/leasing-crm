@@ -1,0 +1,16 @@
+#!/bin/bash
+
+php app/console cache:clear --env=dev
+php app/console cache:clear --env=prod
+php app/console cache:clear --env=test
+#dustc web/js/views/*.dust --output=web/js/compiled/compiled.js --pwd=web/js
+dustc web/js/app/modules/common/view/*.dust --output=web/js/compiled/common.js --pwd=web/js/app/modules
+dustc web/js/app/modules/contacts/view/*.dust --output=web/js/compiled/contacts.js --pwd=web/js/app/modules
+dustc web/js/app/modules/properties/view/*.dust --output=web/js/compiled/properties.js --pwd=web/js/app/modules
+dustc web/js/app/modules/organisations/view/*.dust --output=web/js/compiled/organisations.js --pwd=web/js/app/modules
+dustc web/js/app/modules/tickets/view/*.dust --output=web/js/compiled/tickets.js --pwd=web/js/app/modules
+dustc web/js/app/modules/leaseagreement/view/*.dust --output=web/js/compiled/leaseagreement.js --pwd=web/js/app/modules
+dustc web/js/app/modules/tenancies/view/*.dust --output=web/js/compiled/tenancies.js --pwd=web/js/app/modules
+dustc web/js/app/modules/breakdown/view/*.dust --output=web/js/compiled/breakdown.js --pwd=web/js/app/modules
+#php app/console fos:js-routing:dump --env=dev
+php app/console fos:js-routing:dump $1

@@ -1,0 +1,41 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">Rent breakdowns {{ tenancy ? 'of tenancy #' ~ tenancy.id : '' }}</h1>
+              </div>
+              <div class="pull-right">
+                  <a href="{{ tenancy ? path("app_backend_breakdown_new", {tenancy: tenancy.id}) : path("app_backend_breakdown_new") }}" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-plus"></i><span> Add rent breakdown</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+          <table id="table-breakdown"></table>
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'index';
+      data.tenancy = {{ tenancy|serialize('json')|raw }};
+      return data;
+
+    });
+    require(["/js/common.js"], function(common){
+      require(['app/modules/breakdown/controller/index.controller']);
+    });
+  </script>
+{% endblock %}

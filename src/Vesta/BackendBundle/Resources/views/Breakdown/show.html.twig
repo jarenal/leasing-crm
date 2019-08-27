@@ -1,0 +1,120 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">Breakdown details</h1>
+              </div>
+              <div class="pull-right">
+                  <a href="#" class="btn btn-primary btn-lg" onclick="history.back(); return false;"><i class="glyphicon glyphicon-chevron-left"></i><span> Back</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+            <form class="form-horizontal">
+              <div id="fields-container">
+              <!-- BASIC INFORMATION -->
+              <fieldset id="basic-information-fieldset">
+                <legend>Basic information</legend>
+                <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label" for="breakdown_start_date">Start date</label>
+                    <div class="col-sm-6 control-readonly">
+                      <span data-bind="text: fields.start_date"></span>
+                    </div>
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label" for="breakdown_recurring_rent_review">Recurring rent review</label>
+                    <div class="col-sm-6 control-readonly">
+                      <span data-bind="text: fields.recurring_rent_review"></span> <span data-bind="text: fields.recurring_rent_review_timescale"></span>
+                    </div>
+                </div>
+              </fieldset>
+
+              <!-- RENT BREAKDOWN -->
+              <fieldset id="basic-information-fieldset">
+                <legend>Rent breakdown - per tenancy per week</legend>
+                <div class="form-group form-group-lg">
+                  <div class="col-sm-5 col-sm-offset-3">
+                    <table class="table col-sm-12">
+                      <tbody data-bind="foreach: fields.items">
+                        <tr>
+                          <th>
+                            <label data-bind="text: name" class="control-label" style="font-size: 14px;"></label>
+                            <a href="#" class="" data-toggle="tooltip" data-placement="auto" data-bind="visible: description, attr: {title: description}"><i class="glyphicon glyphicon-question-sign"></i></a>
+                          </th>
+                          <td style="vertical-align: bottom">
+                            &pound; <span data-bind="text: value"></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr class="active">
+                          <th><label class="control-label" style="font-size: 18px;">Total core rent</label></th>
+                          <td style="vertical-align: bottom">
+                            &pound; <span data-bind="text: fields.total_core_rent"></span>
+                          </td>
+                        </tr>
+                        <tr class="active">
+                          <th><label class="control-label" style="font-size: 18px;">Total service charges</label></th>
+                          <td style="vertical-align: bottom">
+                            &pound; <span data-bind="text: fields.total_service_charges"></span>
+                          </td>
+                        </tr>
+                        <tr class="active">
+                          <th><label class="control-label" style="font-size: 18px;">Total</label></th>
+                          <td style="vertical-align: bottom">
+                            &pound; <span data-bind="text: fields.total"></span>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- ADMINISTRATION -->
+              <fieldset id="administration-fieldset">
+                <legend>Administration</legend>
+                  <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+                      <label class="col-sm-3 control-label" for="breakdown_created_by">Created by</label>
+                      <div class="col-sm-6 control-readonly">
+                      <span id="breakdown_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+                    </div>
+                  </div>
+                  <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+                      <label class="col-sm-3 control-label" for="breakdown_updated_by">Updated by</label>
+                      <div class="col-sm-6 control-readonly">
+                      <span id="breakdown_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+                    </div>
+                  </div>
+              </fieldset>
+              </div>
+            </form>
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'show';
+      data.breakdown = {{ breakdown|serialize('json', context)|raw }};
+      return data;
+
+    });
+
+    require(["/js/common.js"], function(common){
+      require(['app/modules/breakdown/controller/show.controller']);
+    });
+  </script>
+{% endblock %}

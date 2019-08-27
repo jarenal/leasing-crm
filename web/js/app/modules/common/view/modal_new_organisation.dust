@@ -1,0 +1,88 @@
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{modal_title}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+        <div id="alert-modal-messages" class="row text-left" style="display:none">
+        </div>
+        <form class="form-horizontal form-modal-popup">
+          <fieldset>
+            <div class="form-group organisation-new required form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_name">Type</label>
+                <div class="col-sm-9">
+                <select id="organisation_type" name="organisation[organisation_type]" data-bind="value: fields.organisation_type" class="form-control">
+                  <option value="0">Choose one</option>
+                  {#static_data.organisation_types}
+                  <option value="{id}">{name}</option>
+                  {/static_data.organisation_types}
+                </select>
+              </div>
+            </div>
+            <div class="form-group organisation-new required form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_name">Name</label>
+                <div class="col-sm-9">
+                  <input id="organisation_name" type="text" name="organisation[name]" class="form-control" data-bind="value: fields.name" value=""/>
+              </div>
+            </div>
+
+            <div class="form-group organisation-new required form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_phone">Phone</label>
+                <div class="col-sm-9">
+                  <input id="organisation_phone" type="text" name="organisation[phone]" class="form-control" data-bind="value: fields.phone" value=""/>
+              </div>
+            </div>
+
+            <div class="form-group organisation-new form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_email">Email</label>
+                <div class="col-sm-9">
+                  <input id="organisation_email" type="text" name="organisation[email]" class="form-control" data-bind="value: fields.email" value=""/>
+              </div>
+            </div>
+
+            <div class="form-group organisation-new form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_website">Website</label>
+                <div class="col-sm-9">
+                  <input id="organisation_website" type="text" name="organisation[website]" class="form-control" data-bind="value: fields.website" value=""/>
+              </div>
+            </div>
+
+            <div class="form-group organisation-new form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_address">Address</label>
+                <div class="col-sm-9">
+                  <input id="organisation_address" type="text" name="organisation[address]" class="form-control" data-bind="value: fields.address" value=""/>
+              </div>
+            </div>
+
+            <div class="form-group organisation-new form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_town">Town</label>
+                <div class="col-sm-9">
+                  <input id="organisation_town" type="text" name="organisation[town]" class="form-control" data-bind="value: fields.town" value=""/>
+              </div>
+            </div>
+
+            <div class="form-group organisation-new form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_postcode">Postcode</label>
+                <div class="col-sm-9">
+                  <input id="organisation_postcode" type="text" name="organisation[postcode]" class="form-control" data-bind="value: fields.postcode" value=""/>
+              </div>
+            </div>
+
+            <div class="form-group organisation-new form-group-lg">
+                <label class="col-sm-3 control-label" for="organisation_comments">Comments</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" id="organisation_comments" placeholder="" name="organisation[comments]"  data-bind="value: fields.comments" rows="6" style="height:auto;"></textarea>
+                </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->

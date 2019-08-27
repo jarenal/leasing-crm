@@ -1,0 +1,44 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">Edit task</h1>
+              </div>
+              <div class="pull-right">
+                  <a href="{{ path('app_backend_ticket_index') }}" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-chevron-left"></i><span> Back</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+          {% include 'AppBackendBundle:Ticket:_form.html.twig' %}
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'edit';
+      data.ticket_statuses = {{ ticket_statuses|serialize('json')|raw }};
+      data.ticket_types = {{ ticket_types|serialize('json')|raw }};
+      data.ticket = {{ ticket|raw}};
+      return data;
+
+    });
+
+    require(["/js/common.js"], function(common){
+      require(['app/modules/tickets/controller/edit.controller']);
+    });
+  </script>
+{% endblock %}

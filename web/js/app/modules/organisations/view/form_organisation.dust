@@ -1,0 +1,104 @@
+  <input id="organisation_id" type="hidden" name="organisation[id]" data-bind="value: fields.id" value=""/>
+
+  <!-- BASIC DETAILS -->
+  <fieldset id="basic-details-fieldset">
+    <legend>Basic details</legend>
+      <div class="form-group required form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_name">Type</label>
+          <div class="col-sm-6">
+          <select id="organisation_type" name="organisation[organisation_type]" data-bind="value: fields.organisation_type" class="form-control">
+            <option value="0">Choose one</option>
+            {#static_data.organisation_types}
+            <option value="{id}">{name}</option>
+            {/static_data.organisation_types}
+          </select>
+        </div>
+      </div>
+      <div class="form-group required form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_name">Name</label>
+          <div class="col-sm-6">
+            <input id="organisation_name" type="text" name="organisation[name]" class="form-control" data-bind="value: fields.name" value=""/>
+        </div>
+      </div>
+  </fieldset>
+
+  <!-- CONTACT DETAILS -->
+  <fieldset id="contact-details-fieldset">
+    <legend>Contact details</legend>
+      <div class="form-group required form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_phone">Phone</label>
+          <div class="col-sm-6">
+            <input id="organisation_phone" type="text" name="organisation[phone]" class="form-control" data-bind="value: fields.phone" value=""/>
+        </div>
+      </div>
+
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_email">Email</label>
+          <div class="col-sm-6">
+            <input id="organisation_email" type="text" name="organisation[email]" class="form-control" data-bind="value: fields.email" value=""/>
+        </div>
+      </div>
+
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_website">Website</label>
+          <div class="col-sm-6">
+            <input id="organisation_website" type="text" name="organisation[website]" class="form-control" data-bind="value: fields.website" value=""/>
+        </div>
+      </div>
+  </fieldset>
+
+  <!-- ADDRESS -->
+  <fieldset id="address-fieldset">
+    <legend>Address</legend>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_address">Address</label>
+          <div class="col-sm-6">
+            <input id="organisation_address" type="text" name="organisation[address]" class="form-control" data-bind="value: fields.address" value=""/>
+        </div>
+      </div>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_town">Town</label>
+          <div class="col-sm-6">
+            <input id="organisation_town" type="text" name="organisation[town]" class="form-control" data-bind="value: fields.town" value=""/>
+        </div>
+      </div>
+      <div class="form-group form-group-lg">
+          <label class="col-sm-3 control-label" for="organisation_postcode">Postcode</label>
+          <div class="col-sm-6">
+            <input id="organisation_postcode" type="text" name="organisation[postcode]" class="form-control" data-bind="value: fields.postcode" value=""/>
+        </div>
+      </div>
+  </fieldset>
+
+  <!-- MISCELLANEOUS -->
+  <fieldset id="miscellaneous-fieldset">
+    <legend>Miscellaneous</legend>
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label" for="organisation_comments">Comments</label>
+        <div class="col-sm-6">
+          <textarea class="form-control" id="organisation_comments" placeholder="" name="organisation[comments]"  data-bind="value: fields.comments" rows="6" style="height:auto;"></textarea>
+        </div>
+    </div>
+  </fieldset>
+
+  <!-- ADMINISTRATION -->
+  <fieldset id="administration-fieldset">
+    <legend>Administration</legend>
+    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+        <label class="col-sm-3 control-label" for="organisation_created_by">Created by</label>
+        <div class="col-sm-6 control-readonly">
+        <span id="organisation_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+      </div>
+    </div>
+    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+        <label class="col-sm-3 control-label" for="organisation_updated_by">Updated by</label>
+        <div class="col-sm-6 control-readonly">
+        <span id="organisation_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+        <a id="btn-save-organisation" href="" class="btn btn-success btn-lg btn-responsive" role="button">Save organisation</a>
+      </div>
+    </div>
+  </fieldset>

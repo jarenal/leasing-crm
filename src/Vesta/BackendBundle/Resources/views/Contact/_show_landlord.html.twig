@@ -1,0 +1,246 @@
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+    <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Tasks</a></li>
+    <li role="presentation"><a href="#properties" aria-controls="properties" role="tab" data-toggle="tab">Properties</a></li>
+    <li role="presentation"><a href="#attachments" aria-controls="attachments" role="tab" data-toggle="tab">Attachments</a></li>
+</ul>
+<div class="tab-content margin-top-20">
+    <div role="tabpanel" class="tab-pane active" id="overview">
+    	<div class="row">
+    		<div class="col-xs-12">
+				<form class="form-horizontal">
+					<!-- TYPE -->
+					<fieldset>
+					<legend>Type</legend>
+					<div class="form-group form-group-lg">
+				    	<label class="col-sm-3 control-label" for="contact_type">Contact type:</label>
+					    <div id="contact_type" class="col-sm-6 control-readonly">
+					    	{{ contact.contacttype.name }}
+						</div>
+					</div>
+					</fieldset>
+					<!-- ORGANISATION -->
+					<fieldset id="organisation-fieldset">
+						<legend>Organisation</legend>
+						<div class="form-group form-group-lg organisation-search">
+					    	<label class="col-sm-3 control-label" for="contact_organisation">Organisation name:</label>
+						    <div id="contact_organisation" class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.organisation ? '<a href="'~ path("app_backend_organisation_show", {id: contact.organisation.id})~'">' ~ contact.organisation.name ~ '</a>': "" }}
+						    	{% endautoescape %}
+							</div>
+						</div>
+
+						<div id="organisation_form">
+						</div>
+					</fieldset>
+
+					<!-- BASIC DETAILS -->
+					<fieldset id="basic-details-fieldset">
+						<legend>Basic Details</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_title">Title:</label>
+						    <div id="contact_title" class="col-sm-6 control-readonly">
+								{{ contact.contacttitle.name }}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_name">First name:</label>
+					    	<div id="contact_name" class="col-sm-6 control-readonly">
+					      		{{ contact.name }}
+					    	</div>
+					    </div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_surname">Last name:</label>
+						    <div id="contact_surname" class="col-sm-6 control-readonly">
+						    	{{ contact.surname }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- CONTACT DETAILS -->
+					<fieldset id="contact-details-fieldset">
+						<legend>Contact Details</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_email">Email:</label>
+						    <div id="contact_email" class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.email?'<a href="mailto:'~contact.email~'">'~contact.email~'</a>' }}
+						    	{% endautoescape %}
+						    </div>
+					  	</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_landline">Landline:</label>
+						    <div id="contact_landline" class="col-sm-6 control-readonly">
+					    		{{ contact.landline }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_mobile">Mobile:</label>
+						    <div id="contact_mobile" class="col-sm-6 control-readonly">
+					    		{{ contact.mobile }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_method">Contact method:</label>
+						    <div id="contact_method" class="col-sm-6 control-readonly">
+					    		{{ contact.contactMethod ? contact.contactMethod.name : "" }}
+						    </div>
+						</div>
+						{% if contact.contactMethod %}
+							{% if contact.contactMethod.id==4 %}
+							<div class="form-group form-group-lg">
+						    	<label class="col-sm-3 control-label" for="contact_method_other">Other contact method:</label>
+							    <div id="contact_method_other" class="col-sm-6 control-readonly">
+						    		{{ contact.contactMethodOther }}
+							    </div>
+							</div>
+							{% endif %}
+						{% endif %}
+					</fieldset>
+
+					<!-- ADDRESS -->
+					<fieldset id="address-fieldset">
+						<legend>Address</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_address">Address:</label>
+						    <div id="contact_address" class="col-sm-6 control-readonly">
+					    		{{ contact.address }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_town">Town:</label>
+						    <div id="contact_town" class="col-sm-6 control-readonly">
+					    		{{ contact.town }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_postcode">Postcode:</label>
+						    <div id="contact_postcode" class="col-sm-6 control-readonly">
+					    		{{ contact.postcode }}
+						    </div>
+						</div>
+					</fieldset>
+
+
+					<!-- INVESTMENT -->
+					<fieldset id="investment-fieldset">
+						<legend>Investment</legend>
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_is_investor">Is investor?</label>
+						    <div id="contact_is_investor" class="col-sm-6 control-readonly">{{ contact.isinvestor ? 'Yes' : 'No'}}</div>
+						</div>
+						<div id="investments-container">
+							<div id="investments-form-container">
+								{% for investment in contact.investments %}
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<div class="form-group form-group-lg">
+									    	<label class="col-sm-3 control-label" for="investment_amount">Maximum amount to invest:</label>
+										    <div class="col-sm-6 control-readonly">{{ investment.amount }} &pound;</div>
+										</div>
+
+										<div class="form-group form-group-lg">
+									    	<label class="col-sm-3 control-label" for="investment_desired_return">Target return:</label>
+										    <div class="col-sm-6 control-readonly">{{ investment.desiredreturn }} &#37;</div>
+										</div>
+
+										<div class="form-group form-group-lg">
+									    	<label class="col-xs-1 col-sm-1 col-md-3 col-lg-3 control-label" for="investment_distance">Area:</label>
+										    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 control-readonly">{{ investment.distance }}&nbsp;&nbsp;<label>miles of</label>&nbsp;&nbsp;{{ investment.postcode }}&nbsp;&nbsp;<label>postcode</label></div>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>	<!-- END investments-form-container -->
+						</div> <!-- END investments-container -->
+					</fieldset>
+
+					<!-- ACCREDITATION -->
+					<fieldset id="accreditation-fieldset">
+						<legend>Accreditation</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_accreditation">Accreditation:</label>
+						    <div id="contact_accreditation" class="col-sm-6 control-readonly">{{ contact.landlordaccreditation.name }}</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_accreditation_references">References:</label>
+						    <div id="contact_accreditation_references" class="col-sm-6 control-readonly">{{ contact.accreditationreferences }}</div>
+						</div>
+					</fieldset>
+
+					<!-- MISCELLANEOUS -->
+					<fieldset id="miscellaneous-fieldset">
+						<legend>Miscellaneous</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_comments">Comments</label>
+						    <div id="contact_comments" class="col-sm-6 control-readonly">
+						    	{{ contact.comments }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- ADMINISTRATION -->
+					<fieldset id="administration-fieldset">
+						<legend>Administration</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_status">Status:</label>
+						    <div id="contact_status" class="col-sm-6 control-readonly">{{ contact.contactstatus.name}}</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_status">Created by</label>
+						    <div class="col-sm-6 control-readonly">
+								<span id="contact_created_by">{{contact.createdBy ? contact.createdBy.name : ""}}</span> ({{contact.createdAt|date("d/m/Y H:i:s")}})
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_status">Updated by</label>
+						    <div class="col-sm-6 control-readonly">
+								<span id="contact_updated_by">{{contact.updatedBy ? contact.updatedBy.name : ""}}</span> ({{contact.updatedAt|date("d/m/Y H:i:s")}})
+							</div>
+						</div>
+					</fieldset>
+				</form>
+    		</div>
+    	</div>
+	</div> <!-- overview tabpanel end -->
+
+	<div role="tabpanel" class="tab-pane" id="tasks">
+    	<div class="row">
+    		<div class="col-xs-12">
+    			<table id="table-tasks"></table>
+    		</div>
+		</div>
+	</div> <!-- tasks tabpanel end -->
+
+	<div role="tabpanel" class="tab-pane" id="properties">
+    	<div class="row">
+    		<div class="col-xs-12">
+    			<table id="table-properties"></table>
+    		</div>
+		</div>
+	</div> <!-- properties tabpanel end -->
+
+	<div role="tabpanel" class="tab-pane" id="attachments">
+    	<div class="row">
+    		<div class="col-xs-12">
+              <form class="form-horizontal">
+                <!-- FILES -->
+                <fieldset id="files-fieldset">
+                  <legend>Files</legend>
+                  <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label">Documents</label>
+                      <div class="col-sm-6">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <div id="table-attachments"></div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </fieldset>
+              </form>
+    		</div>
+		</div>
+	</div> <!-- attachments tabpanel end -->
+</div> <!-- tab-content end -->

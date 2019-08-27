@@ -1,0 +1,43 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">Edit tenancy</h1>
+              </div>
+              <div class="pull-right">
+                  <a href="#" class="btn btn-primary btn-lg" onclick="history.back(); return false;"><i class="glyphicon glyphicon-chevron-left"></i><span> Back</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+          {% include 'AppBackendBundle:Tenancy:_form.html.twig' %}
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'edit';
+      data.tenancy = {{ tenancy|serialize('json', context)|raw }};
+      return data;
+
+    });
+
+    require(["/js/common.js"], function(common){
+      require(['app/modules/tenancies/controller/edit.controller']);
+    });
+  </script>
+  {% include 'AppBackendBundle:Common:_knockout_templates.html.twig' %}
+{% endblock %}

@@ -1,0 +1,450 @@
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+    <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Tasks</a></li>
+    <li role="presentation"><a href="#attachments" aria-controls="attachments" role="tab" data-toggle="tab">Attachments</a></li>
+</ul>
+<div class="tab-content margin-top-20">
+	<div role="tabpanel" class="tab-pane active" id="overview">
+		<div class="row">
+			<div class="col-xs-12">
+				<form class="form-horizontal">
+					<!-- TYPE -->
+					<fieldset>
+					<legend>Type</legend>
+					<div class="form-group form-group-lg">
+				    	<label class="col-sm-3 control-label" for="choose_contact_type">Contact type</label>
+					    <div class="col-sm-6 control-readonly">
+					    	{{ contact.contacttype.name }}
+						</div>
+					</div>
+					</fieldset>
+
+					<!-- BASIC DETAILS -->
+					<fieldset id="basic-details-fieldset">
+						<legend>Basic Details</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_title">Title</label>
+						    <div class="col-sm-6 control-readonly">
+								{{ contact.contacttitle.name }}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_name">First name</label>
+					    	<div class="col-sm-6 control-readonly">
+					      		{{ contact.name }}
+					    	</div>
+					    </div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_surname">Last name</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.surname }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- CONTACT DETAILS -->
+					<fieldset id="contact-details-fieldset">
+						<legend>Contact Details</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_email">Email</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.email?'<a href="mailto:'~contact.email~'">'~contact.email~'</a>' }}
+						    	{% endautoescape %}
+						    </div>
+					  	</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_landline">Landline</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.landline }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_mobile">Mobile</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.mobile }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_mobile">Contact method</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.contactMethod ? contact.contactMethod.name : "" }}
+						    </div>
+						</div>
+						{% if contact.contactMethod %}
+							{% if contact.contactMethod.id==4 %}
+							<div class="form-group form-group-lg">
+						    	<label class="col-sm-3 control-label" for="contact_mobile">Other contact method</label>
+							    <div class="col-sm-6 control-readonly">
+						    		{{ contact.contactMethodOther }}
+							    </div>
+							</div>
+							{% endif %}
+						{% endif %}
+					</fieldset>
+
+					<!-- ADDRESS -->
+					<fieldset id="address-fieldset">
+						<legend>Address</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_address">Address</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.address }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_town">Town</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.town }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_postcode">Postcode</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.postcode }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- GENERAL DETAILS -->
+					<fieldset id="general-details-fieldset">
+						<legend>General details</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_address">Date of birth</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.birthdate|date('d/m/Y') }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_postcode">Gender</label>
+						    <div class="col-sm-6 control-readonly">
+								{{ contact.gender.name }}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_postcode">Marital status</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.maritalstatus.name }}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_postcode">National Insurance Number</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.nin }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_postcode">Local Authority</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.localauthority ? '<a href="'~ path("app_backend_organisation_show", {id: contact.localauthority.id})~'">' ~ contact.localauthority.name ~ '</a>': "" }}
+						    	{% endautoescape %}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_postcode">Social services contact</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.socialservicescontact ? '<a href="'~ path("app_backend_contact_show", {id: contact.socialservicescontact.id})~'">' ~ contact.socialservicescontact.fullname ~ '</a>': "" }}
+						    	{% endautoescape %}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- CHILDREN -->
+					<fieldset id="children-fieldset">
+						<legend>Children</legend>
+
+						<div id="children-container">
+							<div id="children-form-container">
+								{% if contact.children.count %}
+									{% for child in contact.children %}
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<div class="form-group form-group-lg">
+										    	<label class="col-sm-3 control-label" for="contact_postcode">Name</label>
+											    <div class="col-sm-6 control-readonly">{{ child.name }}</div>
+										    </div>
+											<div class="form-group form-group-lg">
+										    	<label class="col-sm-3 control-label" for="contact_postcode">Birthdate</label>
+											    <div class="col-sm-6 control-readonly">{{ child.birthdate|date('d/m/Y')  }}</div>
+										    </div>
+											<div class="form-group form-group-lg">
+										    	<label class="col-sm-3 control-label" for="contact_postcode">Has guardianship?</label>
+											    <div class="col-sm-6 control-readonly">{{ child.guardianship?'Yes':'No' }}</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								{% else %}
+									<div class="panel panel-default">
+										<div class="panel-body">
+											No children
+										</div>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					</fieldset>
+
+					<!-- SUPPORT -->
+					<fieldset id="support-fieldset">
+						<legend>Support</legend>
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_need_night_support">Sleepin/Live nights needed?</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.needNightSupport?"Yes":"No"}} {{ contact.NightsSupport.count? "("~contact.NightsSupportNames|join(', ')~")":""}}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_has_chc_budget">Continuing health care budget?</label>
+						    <div class="col-sm-6 control-readonly">
+								{{ contact.hasChcBudget?"Yes":"No"}}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_town">Support package hours per week?</label>
+						    <div class="col-sm-6 control-readonly">
+					    		{{ contact.supportPackageHours }}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_town">Disability</label>
+						    <div class="col-sm-6 control-readonly">
+						    	<div id="conditions-container"></div>
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_has_agency_support_provider">Are they supported by a Registered Support Provider?</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.agencySupportProvider ? "Yes" : "No"}}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_agency_support_provider">Registered support provider</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.agencySupportProvider ? '<a href="'~ path("app_backend_organisation_show", {id: contact.agencySupportProvider.id})~'">' ~ contact.agencySupportProvider.name ~ '</a>': "" }}
+						    	{% endautoescape %}
+							</div>
+						</div>
+						<div class="form-group form-group-lg margin-top-40">
+					    	<label class="col-sm-3 control-label" for="contact_support_provider">Contact support provider</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.contactSupportProvider ? '<a href="'~ path("app_backend_contact_show", {id: contact.contactSupportProvider.id})~'">' ~ contact.contactSupportProvider.fullname ~ '</a>': "" }}
+						    	{% endautoescape %}
+							</div>
+						</div>
+					</fieldset>
+
+					<!-- DEPUTY -->
+					<fieldset id="deputy-fieldset">
+						<legend>Deputy</legend>
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_lack_capacity">Does the tenant lack capacity?</label>
+						    <div class="col-sm-6 control-readonly">
+								{{ contact.lackCapacity ? "Yes" : "No"}}
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_agency_support_provider">Deputy / Point of contact</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.deputy ? '<a href="'~ path("app_backend_contact_show", {id: contact.deputy.id})~'">' ~ contact.deputy.fullname ~ '</a>': "" }}
+						    	{% endautoescape %}
+							</div>
+						</div>
+					</fieldset>
+
+					<!-- TENANT HISTORY -->
+					<fieldset id="tenant-history-fieldset">
+						<legend>Tenant history</legend>
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_drugHistorial">History of drug and alcohol abuse?</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.drugHistorial ? "Yes" : "No"}}
+							</div>
+						</div>
+						{% if contact.drugHistorialDetails %}
+						<div class="form-group form-group-lg">
+						    <div class="col-sm-6 col-sm-offset-3">
+						    	{{ contact.drugHistorialDetails }}
+						    </div>
+						</div>
+						{% endif %}
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_sexualOffencesHistorial">History of sexual offences?</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.sexualOffencesHistorial ? "Yes" : "No"}}
+							</div>
+						</div>
+						{% if contact.sexualOffencesHistorialDetails %}
+						<div class="form-group form-group-lg">
+						    <div class="col-sm-6 col-sm-offset-3">
+						    	{{ contact.sexualOffencesHistorialDetails }}
+						    </div>
+						</div>
+						{% endif %}
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_arsonHistorial">History of arson?</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.arsonHistorial ? "Yes" : "No"}}
+							</div>
+						</div>
+						{% if contact.arsonHistorialDetails %}
+						<div class="form-group form-group-lg">
+						    <div class="col-sm-6 col-sm-offset-3">
+						    	{{ contact.arsonHistorialDetails }}
+						    </div>
+						</div>
+						{% endif %}
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_evictionsHistorial">History of previous evictions?</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.evictionsHistorial ? "Yes" : "No"}}
+							</div>
+						</div>
+						{% if contact.evictionsHistorialDetails %}
+						<div class="form-group form-group-lg">
+						    <div class="col-sm-6 col-sm-offset-3">
+						    	{{ contact.evictionsHistorialDetails }}
+						    </div>
+						</div>
+						{% endif %}
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_violenceHistorial">History of Violence towards Others</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.violenceHistorial ? "Yes" : "No"}}
+							</div>
+						</div>
+						{% if contact.violenceHistorialDetails %}
+						<div class="form-group form-group-lg">
+						    <div class="col-sm-6 col-sm-offset-3">
+						    	{{ contact.violenceHistorialDetails }}
+						    </div>
+						</div>
+						{% endif %}
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_antiSocialHistorial">History of Anti-Social Behaviour</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.antiSocialHistorial ? "Yes" : "No"}}
+							</div>
+						</div>
+						{% if contact.antiSocialHistorialDetails %}
+						<div class="form-group form-group-lg">
+						    <div class="col-sm-6 col-sm-offset-3">
+						    	{{ contact.antiSocialHistorialDetails }}
+						    </div>
+						</div>
+						{% endif %}
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_rentArrearsHistorial">History of Rent Arrears</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.rentArrearsHistorial ? "Yes" : "No"}}
+							</div>
+						</div>
+						{% if contact.rentArrearsHistorialDetails %}
+						<div class="form-group form-group-lg">
+						    <div class="col-sm-6 col-sm-offset-3">
+						    	{{ contact.rentArrearsHistorialDetails }}
+						    </div>
+						</div>
+						{% endif %}
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_vulnerabilityHistorial">Vulnerability in public</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.vulnerabilityHistorial ? "Yes" : "No"}}
+							</div>
+						</div>
+						{% if contact.vulnerabilityHistorialDetails %}
+						<div class="form-group form-group-lg">
+						    <div class="col-sm-6 col-sm-offset-3">
+						    	{{ contact.vulnerabilityHistorialDetails }}
+						    </div>
+						</div>
+						{% endif %}
+						<div class="form-group form-group-lg">
+							<label class="col-sm-3 control-label" for="contact_tenantReferences">References</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.tenantReferences }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- MISCELLANEOUS -->
+					<fieldset id="miscellaneous-fieldset">
+						<legend>Miscellaneous</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_comments">Comments</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{{ contact.comments }}
+						    </div>
+						</div>
+					</fieldset>
+
+					<!-- ADMINISTRATION -->
+					<fieldset id="administration-fieldset">
+						<legend>Administration</legend>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_lfl_contact">Contact</label>
+						    <div class="col-sm-6 control-readonly">
+						    	{% autoescape false %}
+						    	{{ contact.lflcontact ? '<a href="'~ path("app_backend_contact_show", {id: contact.lflcontact.id})~'">' ~ contact.lflcontact.fullname ~ '</a>': "" }}
+						    	{% endautoescape %}
+						    </div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="landlord_status">Status</label>
+						    <div class="col-sm-6 control-readonly">{{ contact.contactstatus.name}}</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_status">Created by</label>
+						    <div class="col-sm-6 control-readonly">
+								{{contact.createdBy ? contact.createdBy.name : ""}} ({{contact.createdAt|date("d/m/Y H:i:s")}})
+							</div>
+						</div>
+						<div class="form-group form-group-lg">
+					    	<label class="col-sm-3 control-label" for="contact_status">Updated by</label>
+						    <div class="col-sm-6 control-readonly">
+								{{contact.updatedBy ? contact.updatedBy.name : ""}} ({{contact.updatedAt|date("d/m/Y H:i:s")}})
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div> <!-- overview tabpanel end -->
+
+	<div role="tabpanel" class="tab-pane" id="tasks">
+    	<div class="row">
+    		<div class="col-xs-12">
+    			<table id="table-tasks"></table>
+    		</div>
+		</div>
+	</div> <!-- tasks tabpanel end -->
+
+	<div role="tabpanel" class="tab-pane" id="attachments">
+    	<div class="row">
+    		<div class="col-xs-12">
+              <form class="form-horizontal">
+                <!-- FILES -->
+                <fieldset id="files-fieldset">
+                  <legend>Files</legend>
+                  <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label">Documents</label>
+                      <div class="col-sm-6">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <div id="table-attachments"></div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </fieldset>
+              </form>
+    		</div>
+		</div>
+	</div> <!-- attachments tabpanel end -->
+
+</div> <!-- tab-content tabpanel end -->

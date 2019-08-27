@@ -1,0 +1,7 @@
+services:
+    app_api.save_author:
+        class: App\ApiBundle\EventListener\SaveAuthor
+        arguments: [ @security.token_storage ]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

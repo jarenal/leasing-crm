@@ -1,0 +1,26 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+    my_fire_php.debug: "%kernel.debug%"
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    uploads_handler:
+        class: App\ApiBundle\Utils\UploadsHandler
+        arguments: ["@my_fire_php"]
+    fake_nin_generator:
+        class: App\ApiBundle\Utils\FakeNinGenerator
+    stream_post_data:
+        class: App\ApiBundle\Utils\StreamPostData
+        arguments: ["@my_fire_php"]
+    my_fire_php:
+        class: App\ApiBundle\Utils\MyFirePHP
+        arguments: ["","%my_fire_php.debug%"]
+    login_listener:
+        class: App\BackendBundle\Listener\LoginListener
+        arguments: ['@security.authorization_checker', '@doctrine']
+        tags:
+            - { name: 'kernel.event_listener', event: 'security.interactive_login', method: onSecurityInteractiveLogin }

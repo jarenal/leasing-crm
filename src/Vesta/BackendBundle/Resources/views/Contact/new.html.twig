@@ -1,0 +1,57 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">New contact</h1>
+              </div>
+              <div class="pull-right">
+                  <a href="{{ path('app_backend_contact_index') }}" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-chevron-left"></i><span> Back</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+          {% include 'AppBackendBundle:Contact:form.html.twig' %}
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'new';
+      data.contact_statuses = {{ contact_statuses|serialize('json')|raw }};
+      data.landlord_accreditations = {{ landlord_accreditations|serialize('json')|raw }};
+      data.contact_titles = {{ contact_titles|serialize('json')|raw }};
+      data.contractor_services = {{ contractor_services|serialize('json')|raw }};
+      data.tenant_genders = {{ tenant_genders|serialize('json')|raw }};
+      data.tenant_marital_statuses = {{ tenant_marital_statuses|serialize('json')|raw }};
+      data.tenant_nights_support = {{ tenant_nights_support|serialize('json')|raw }};
+      data.tenant_conditions = {{ tenant_conditions|serialize('json')|raw }};
+      data.organisation_types = {{ organisation_types|serialize('json')|raw }};
+      data.other_types = {{ other_types|serialize('json')|raw }};
+      data.contact_methods = {{ contact_methods|serialize('json')|raw }};
+      return data;
+
+    });
+
+    require(["/js/common.js"], function(common){
+      /*
+      require(["bootstrap-waitingfor"], function(waitingDialog){
+        waitingDialog.show('Loading, wait please...', {dialogSize: 'm', progressType: 'warning', idmodal: "loading-modal"});
+      });*/
+
+      require(['app/modules/contacts/controller/edit.controller']);
+    });
+  </script>
+{% endblock %}

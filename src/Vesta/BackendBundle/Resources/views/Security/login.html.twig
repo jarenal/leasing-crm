@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    {% if error %}
+        <div class="alert alert-danger text-center" role="alert">{{ error.messageKey|trans(error.messageData) }}</div>
+    {% endif %}      
+      <form class="form-signin" action="{{ path('login_check') }}" method="post">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" class="form-control" placeholder="username" name="_username" required autofocus>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Password" name="_password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+{% endblock %}  
+
+  {% block stylesheets %}
+      {{ parent() }}
+      <link href="{{ asset('css/signin.css') }}" rel="stylesheet" />
+  {% endblock %}  

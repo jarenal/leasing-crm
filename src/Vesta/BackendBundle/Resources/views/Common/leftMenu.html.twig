@@ -1,0 +1,9 @@
+          <ul class="nav nav-sidebar">
+            <li class="{{ current=='dashboard' ? 'active' : '' }}"><a href="{{ path("app_backend_dashboard_index") }}"><span class="fa fa-tachometer" aria-hidden="true"></span> Dashboard {{ current=='dashboard' ? '<span class="sr-only">(current)</span>' : '' }}</a></li>
+            <li class="{{ current=='contact' ? 'active' : '' }}"><a href="{{ path("app_backend_contact_index") }}"><span class="fa fa-users" aria-hidden="true"></span> Contacts {{ current=='contact' ? '<span class="sr-only">(current)</span>' : '' }}</a></li>
+            <li class="{{ current=='property' ? 'active' : '' }}"><a href="{{ path("app_backend_property_index") }}"><span class="fa fa-home" aria-hidden="true"></span> Properties {{ current=='property' ? '<span class="sr-only">(current)</span>' : '' }}</a></li>
+            <li class="{{ current=='organisation' ? 'active' : '' }}"><a href="{{ path("app_backend_organisation_index") }}"><span class="fa fa-building" aria-hidden="true"></span> Organisations {{ current=='organisation' ? '<span class="sr-only">(current)</span>' : '' }}</a></li>
+            <li class="{{ current=='ticket' ? 'active' : '' }}"><a href="{{ path("app_backend_ticket_index") }}"><span class="fa fa-list" aria-hidden="true"></span> Tasks {{ current=='ticket' ? '<span class="sr-only">(current)</span>' : '' }}</a></li>
+            <li class="{{ current=='leaseagreement' ? 'active' : '' }}"><a href="{{ path("app_backend_leaseagreement_index") }}"><span class="fa fa-wpforms" aria-hidden="true"></span> Lease agreements {{ current=='leaseagreement' ? '<span class="sr-only">(current)</span>' : '' }}</a></li>
+            <li class="{{ current=='tenancy' ? 'active' : '' }}"><a href="{{ path("app_backend_tenancy_index") }}"><span class="fa fa-key" aria-hidden="true"></span> Tenancies {{ current=='tenancy' ? '<span class="sr-only">(current)</span>' : '' }}</a></li>
+          </ul>

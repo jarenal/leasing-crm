@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+ <nav class="navbar navbar-inverse navbar-fixed-top {{ preproduction?'preproduction':''}}">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">{{ preproduction?'PRE-':''}}App</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ path("logout") }}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          {{ render(controller('AppBackendBundle:Common:leftMenu',{ 'routeName': app.request.attributes.get('_route') })) }}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div id="alert-messages" class="row text-left" style="display:none">
+          </div>
+        	{% block main %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-labelledby="modal-message-title" aria-hidden="true"></div>
+<div class="modal fade" id="modal-smartcombo" tabindex="-1" role="dialog" aria-labelledby="modal-message-title" aria-hidden="true"></div>
+<div class="modal fade" id="modal-alert-messages" tabindex="-1" role="dialog" aria-labelledby="modal-message-title" aria-hidden="true"></div>
+<div class="modal fade" id="modal-add-update" tabindex="-1" role="dialog" aria-labelledby="modal-message-title" aria-hidden="true"></div>
+<div class="modal fade" id="modal-message-confirmation" tabindex="-1" role="dialog" aria-labelledby="modal-message-title" aria-hidden="true"></div>
+<div class="modal fade" id="modal-message-file-deletion" tabindex="-1" role="dialog" aria-labelledby="modal-message-title" aria-hidden="true"></div>
+<div class="modal fade" id="modal-contact-exist" tabindex="-1" role="dialog" aria-labelledby="modal-message-title" aria-hidden="true"></div>
+
+<div id="loading-modal">
+  <div class="modal-backdrop fade in"></div>
+  <div style="padding-top: 15%; overflow-y: visible; display: block;" aria-hidden="false" role="dialog" tabindex="-1" data-keyboard="false" data-backdrop="static" class="modal fade in"><div class="modal-dialog modal-m"><div class="modal-content"><div class="modal-header"><h3 style="margin:0;">Working, please wait...</h3></div><div class="modal-body"><div style="margin-bottom:0;" class="progress progress-striped active"><div style="width: 100%" class="progress-bar progress-bar-warning"></div></div></div></div></div></div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+    <script type="text/javascript">
+        require(["/js/common.js"], function(common){
+            require(['app/modules/common/controller/index.controller']);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,86 @@
+	<!-- BASIC INFORMATION -->
+	<fieldset id="basic-fieldset">
+		<legend>Basic information</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_ticket_type">Type</label>
+		    <div class="col-sm-6 control-readonly">
+		    	<span id="ticket_ticket_type" data-bind="text: fields.ticket_type_name"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_title">Task title</label>
+		    <div class="col-sm-6 control-readonly">
+		    	<span id="ticket_title" data-bind="text: fields.title"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_description">Description</label>
+		    <div class="col-sm-6 control-readonly">
+	    		<span id="ticket_description" data-bind="text: fields.description"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_action_needed">Action needed</label>
+		    <div class="col-sm-6 control-readonly">
+	    		<span id="ticket_action_needed" data-bind="text: fields.action_needed"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_duedate_at">Due date</label>
+		    <div class="col-sm-6 control-readonly">
+		    	<span id="ticket_duedate_at" data-bind="text: fields.duedate_at"></span>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_reported_by">Reported by</label>
+		    <div class="col-sm-6 control-readonly">
+		    <a id="ticket_reported_by" data-bind="text: fields.reported_by_name, attr: {href: fields.reported_by_link}"></a>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_assign_to">Assign to</label>
+		    <div class="col-sm-6 control-readonly">
+		    <a id="ticket_assign_to" data-bind="text: fields.assign_to_name, attr: {href: fields.assign_to_link}"></a>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_parent">Link to main task</label>
+		    <div class="col-sm-6 control-readonly">
+		    	<a id="ticket_parent" data-bind="text: fields.parent_title, attr: {href: fields.parent_link}"></a>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_full_time_spent">Time spent</label>
+		    <div class="col-sm-6 control-readonly">
+		    	<span id="ticket_full_time_spent" data-bind="text: fields.full_time_spent"></span>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- ADMINISTRATION -->
+	<fieldset id="administration-fieldset">
+		<legend>Administration</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_status">Status</label>
+		    <div class="col-sm-6 control-readonly">
+				<span id="ticket_status" data-bind="text: fields.status_name"></span>
+			</div>
+		</div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+	        <label class="col-sm-3 control-label" for="ticket_created_by">Created by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="ticket_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+	      </div>
+	    </div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+	        <label class="col-sm-3 control-label" for="ticket_updated_by">Updated by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="ticket_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+	      </div>
+	    </div>
+	</fieldset>
+
+
+
+
+

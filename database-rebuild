@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# remove database
+php app/console doctrine:database:drop --if-exists --force $1
+
+# create database
+php app/console doctrine:database:create --if-not-exists $1
+
+# regenerate model
+./model-rebuild $1
+
+# load data
+# mysql -hlocalhost -uapp -p1234 app_dev < ./sql/data.sql
+php app/console doctrine:fixtures:load --append $1

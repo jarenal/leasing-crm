@@ -1,0 +1,51 @@
+		<div class="form-group required form-group-lg">
+			<input type="hidden" name="investment[id]" data-bind="value: investment.id" value=""/>
+			<input type="hidden" name="investment[token]" class="investment-token" data-bind="value: investment.token" value=""/>
+	    	<label class="col-sm-3 control-label" for="investment_amount">Maximum amount to invest</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group">
+		    	<div class="input-group-addon">&pound;</div>
+		    	<input type="text" name="investment[amount]" class="form-control investment-amount" data-bind="value: investment.amount" value=""/>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="investment_desired_return">Target return</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group">
+		    	<div class="input-group-addon">&#37;</div>
+		    	<input type="text" name="investment[desired_return]" class="form-control investment-desired-return" data-bind="value: investment.desired_return" value=""
+		    	/>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group required form-group-lg">
+	    	<label class="col-xs-1 col-sm-1 col-md-3 col-lg-3 control-label" for="investment_distance">Area</label>
+		    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+				<select name="investment[distance]" data-bind="value: investment.distance" class="form-control investment-distance">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option value="40">40</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+					<option value="250">250</option>
+					<option value="500">500</option>
+				</select>&nbsp;&nbsp;&nbsp;miles of
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
+				<input type="text" name="investment[postcode]" class="form-control investment-postcode" data-bind="value: investment.postcode" value=""/>&nbsp;&nbsp;&nbsp;postcode
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 btn-group" role="group">
+				<a href="#" class="btn btn-danger btn-sm btn-responsive btn-remove-investment" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove Investment</a>
+				<a href="#" class="btn btn-success btn-sm btn-responsive btn-save-investment" role="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save Investment</a>
+				<a href="#" class="btn btn-primary btn-sm btn-responsive btn-edit-investment" role="button" style="display:none"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Investment</a>
+			</div>
+		</div>

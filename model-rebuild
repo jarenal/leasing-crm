@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# clear cache
+php app/console doctrine:cache:clear-metadata $1
+php app/console doctrine:cache:clear-query $1
+php app/console doctrine:cache:clear-result $1
+
+# setup setters y getters
+php app/console doctrine:generate:entities $1 --no-backup App/ApiBundle/Entity
+
+# upload changes to MySQL
+php app/console doctrine:schema:update --force $1
+
+# remove cache
+./cache-clear $1

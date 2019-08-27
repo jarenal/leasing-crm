@@ -1,0 +1,1 @@
+// Dummy static_data neccesary when is not available.

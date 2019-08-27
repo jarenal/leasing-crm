@@ -1,0 +1,222 @@
+	<input id="ticket_id" type="hidden" name="ticket[id]" data-bind="value: fields.id" value=""/>
+
+
+	<!-- RELATED CONTACTS -->
+	<fieldset id="related-contacts-fieldset">
+		<legend>Related contacts</legend>
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<table id="table-related-contacts"></table>
+						<div class="smartcombo-container col-xs-12 margin-top-10">
+							<input id="search_related_contact" type="hidden" name="search_contact" value="" data-bind="smartComboTicketsRelatedContacts: fields.search_related_contact, withCreate: false"/>
+						</div>
+						<div style="clear:both"></div>
+						<div class="col-xs-12 text-right">
+							<a href="" class="btn btn-success btn-sm btn-responsive" role="button" data-bind="css: { 'disabled': fields.emptyRelatedContactSearch() }, click: function(data, event){ addRelatedContact(''); }"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Add contact</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- RELATED PROPERTIES -->
+	<fieldset id="related-contacts-fieldset">
+		<legend>Related properties</legend>
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<table id="table-related-properties"></table>
+						<div class="smartcombo-container col-xs-12 margin-top-10">
+							<input id="search_related_property" type="hidden" name="search_property" value="" data-bind="smartComboTicketsRelatedProperties: fields.search_related_property, withCreate: false"/>
+						</div>
+						<div style="clear:both"></div>
+						<div class="col-xs-12 text-right">
+							<a href="" class="btn btn-success btn-sm btn-responsive" role="button" data-bind="css: { 'disabled': fields.emptyRelatedPropertySearch() }, click: function(data, event){ addRelatedProperty(''); }"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Add property</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- BASIC INFORMATION -->
+	<fieldset id="basic-fieldset">
+		<legend>Basic information</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_type">Type</label>
+		    <div class="col-sm-6">
+				<select id="ticket_type" name="ticket[ticket_type]" data-bind="value: fields.ticket_type" class="form-control">
+					<option value="0">Choose one</option>
+					{#ticket_types}
+					<option value="{id}">{name}</option>
+					{/ticket_types}
+				</select>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_title">Task title</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="ticket_title" placeholder="" name="ticket[title]" data-bind="value: fields.title" value=""/>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_date_reported">Date reported</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="ticket_date_reported" placeholder="" name="ticket[date_reported]" data-bind="datePickerFreeDate: fields.date_reported, value: fields.date_reported"/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_duedate_at">Due date</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="ticket_duedate_at" placeholder="" name="ticket[duedate_at]" data-bind="datePickerDueDate: fields.duedate_at, value: fields.duedate_at"/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_description">Description</label>
+		    <div class="col-sm-6">
+	    		<textarea class="form-control" id="ticket_description" placeholder="" name="ticket[description]"  data-bind="value: fields.description" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_action_needed">Action needed</label>
+		    <div class="col-sm-6">
+	    		<textarea class="form-control" id="ticket_action_needed" placeholder="" name="ticket[action_needed]"  data-bind="value: fields.action_needed" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_time_spent">Time spent</label>
+		    <div class="col-sm-3">
+	    		<input class="form-control" type="text" id="ticket_time_spent" placeholder="" name="ticket[time_spent]" data-bind="value: fields.time_spent" value=""/>
+		    </div>
+		    <div class="col-sm-3">
+				<select id="ticket_time_spent_unit" name="ticket[time_spent_unit]" data-bind="value: fields.time_spent_unit" class="form-control">
+					<option value="0">Choose one</option>
+					<option value="Minutes">Minutes</option>
+					<option value="Hours">Hours</option>
+					<option value="Days">Days</option>
+				</select>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_reported_by">Reported by</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="ticket_reported_by" type="hidden" name="ticket[reported_by]"  data-bind="smartComboContact: fields.reported_by, withCreate: false" value=""/>
+			</div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_assign_to">Assign to</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="ticket_assign_to" type="hidden" name="ticket[assign_to]"  data-bind="smartComboUserContact: fields.assign_to, withCreate: false" " value=""/>
+			</div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_parent">Link to main task</label>
+		    <div class="smartcombo-container col-sm-6">
+		    	<input id="ticket_parent" type="hidden" name="ticket[parent]"  data-bind="smartComboTicket: fields.parent, withCreate: false" value=""/>
+			</div>
+		</div>
+	</fieldset>
+
+	{#ticket_data.id}
+	<!-- COMMENTS -->
+	<fieldset id="comments-fieldset">
+		<legend>Updates</legend>
+
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" data-bind="foreach: fields.comments">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><a role="button" data-toggle="collapse" data-parent="#accordion22" href="" data-bind="text: title, attr: {href: '#comment-'+id, 'aria-controls': 'comment-'+id, 'aria-expanded': (parseInt($index())==$parent.fields.comments().length-1) ? 'true' : 'false'}"></a></div>
+				<div class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" data-bind="attr: {id: 'comment-'+id, 'aria-labelledby': 'comment-'+id}, css: (parseInt($index())==$parent.fields.comments().length-1) ? 'in' : ''">
+					<div class="panel-body">
+			            <div class="form-group form-group-lg">
+			                <label class="col-sm-3 control-label" for="comment_description">Description</label>
+			                <div class="col-sm-6">
+			                  <textarea id="comment_description" class="form-control" placeholder="" name="comment[description]"  data-bind="value: description" rows="6" style="height:auto;" disabled="disabled"></textarea>
+			              </div>
+			            </div>
+			            <div class="form-group form-group-lg">
+			                <label class="col-sm-3 control-label" for="comment_action_needed">Action needed</label>
+			                <div class="col-sm-6">
+			                  <textarea id="comment_action_needed" class="form-control" placeholder="" name="comment[action_needed]"  data-bind="value: action_needed" rows="6" style="height:auto;" disabled="disabled"></textarea>
+			              </div>
+			            </div>
+
+			            <div class="form-group form-group-lg">
+			                <label class="col-sm-3 control-label" for="comment_time_spent">Time spent</label>
+			                <div class="col-sm-3">
+			                  <input class="form-control" type="text" id="comment_time_spent" placeholder="" name="comment[time_spent]" data-bind="value: time_spent" value="" disabled="disabled"/>
+			                </div>
+			                <div class="col-sm-3">
+			                <select id="comment_time_spent_unit" name="comment[time_spent_unit]" data-bind="value: time_spent_unit" class="form-control" disabled="disabled">
+			                  <option value="0">Choose one</option>
+			                  <option value="Minutes">Minutes</option>
+			                  <option value="Hours">Hours</option>
+			                  <option value="Days">Days</option>
+			                </select>
+			                </div>
+			            </div>
+					</div>
+				</div>
+			</div>
+		</div> <!-- END foreach: fields.comments -->
+
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+				<a id="btn-add-update" href="" class="btn btn-success btn-lg btn-responsive" role="button"><i class="glyphicon glyphicon-plus"></i> Add update</a>
+			</div>
+		</div>
+
+	</fieldset>
+	{/ticket_data.id}
+
+	<!-- ADMINISTRATION -->
+	<fieldset id="administration-fieldset">
+		<legend>Administration</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="ticket_status">Status</label>
+		    <div class="col-sm-6">
+				<select id="ticket_status" name="ticket[status]" data-bind="value: fields.status" class="form-control">
+					<option value="0">Choose one</option>
+					{#ticket_statuses}
+					<option value="{id}">{name}</option>
+					{/ticket_statuses}
+				</select>
+			</div>
+		</div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+	        <label class="col-sm-3 control-label" for="ticket_created_by">Created by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="ticket_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+	      </div>
+	    </div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+	        <label class="col-sm-3 control-label" for="ticket_updated_by">Updated by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="ticket_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+	      </div>
+	    </div>
+
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+				<a id="btn-save-ticket" href="" class="btn btn-success btn-lg btn-responsive" role="button">Save task</a>
+			</div>
+		</div>
+	</fieldset>
+
+
+
+
+

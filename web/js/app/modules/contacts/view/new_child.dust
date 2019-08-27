@@ -1,0 +1,51 @@
+		<div class="form-group form-group-lg">
+			<div class="col-sm-3">
+	    	</div>
+	    	<div class="col-sm-6">
+	    	<h3>Child #<span>{children_count}</span></h3>
+	    	</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="child_name">Name</label>
+		    <div class="col-sm-6">
+				<input type="hidden" name="child[id]" data-bind="value: fields.id" value=""/>
+				<input type="hidden" name="child[token]" class="child-token" data-bind="value: fields.token" value=""/>
+	    		<input class="form-control child-name" type="text" placeholder="" name="child[][name]" data-bind="value: fields.name" value=""/>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="child_birthdate">Birthdate</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+	    			<input class="form-control child-birthdate" type="text" placeholder="" name="child[][birthdate]" data-bind="datePickerMaxDateToday: fields.birthdate, value: fields.birthdate" value=""/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="child_guardianship">Has guardianship?</label>
+		    <div class="col-sm-6">
+		    	<!--<label class="checkbox-inline cbx-label">
+					<input type="checkbox" class="child-guardianship" name="child[guardianship]" data-bind="checked: fields.guardianship">
+				</label>-->
+		    	<div class="col-sm-12 col-md-2">
+			    	<input type="radio" name="child[{children_count}][guardianship]" value="0" data-bind="checked: fields.guardianship" class="child-guardianship"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="clearfix visible-sm-block"></div>
+		    	<div class="col-sm-12 col-md-2">
+			    	<input type="radio" name="child[{children_count}][guardianship]" value="1" data-bind="checked: fields.guardianship" class="child-guardianship"/>&nbsp;<label class="control-label">Yes</label>
+
+		    	</div>
+		    </div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 btn-group" role="group">
+				<a href="#" class="btn btn-danger btn-sm btn-responsive btn-remove-child" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove Child</a>
+				<a href="#" class="btn btn-success btn-sm btn-responsive btn-save-child" role="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save Child</a>
+				<a href="#" class="btn btn-primary btn-sm btn-responsive btn-edit-child" role="button" style="display:none"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Child</a>
+			</div>
+		</div>
+

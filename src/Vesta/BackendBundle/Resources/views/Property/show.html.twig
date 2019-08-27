@@ -1,0 +1,143 @@
+{% extends '::dashboard.html.twig' %}
+
+{% block main %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <a href="{{ path('app_backend_property_index') }}" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i><span> Back to properties list</span></a>
+              </div>
+              <div class="pull-right">
+                  <a href="{{ path('app_backend_property_edit',{"id": property.id}) }}" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-pencil"></i><span> Edit property</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                <h1 class="page-header">{{ property.fulltitle }}</h1>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="box">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+                <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Tasks</a></li>
+                <li role="presentation"><a href="#leaseagreements" aria-controls="leaseagreements" role="tab" data-toggle="tab">Lease agreements</a></li>
+                <li role="presentation"><a href="#tenancies" aria-controls="tenancies" role="tab" data-toggle="tab">Tenancies</a></li>
+                <li role="presentation"><a href="#attachments" aria-controls="attachments" role="tab" data-toggle="tab">Attachments</a></li>
+            </ul>
+            <div class="tab-content margin-top-20">
+              <div role="tabpanel" class="tab-pane active" id="overview">
+                <div class="row">
+                  <div class="col-xs-12">
+              			<form class="form-horizontal">
+              				<div id="fields-container">
+              				</div>
+              			</form>
+                  </div>
+                </div>
+              </div> <!-- overview tabpanel end -->
+
+              <div role="tabpanel" class="tab-pane" id="tasks">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <table id="table-tasks"></table>
+                    </div>
+                </div>
+              </div> <!-- tasks tabpanel end -->
+
+              <div role="tabpanel" class="tab-pane" id="leaseagreements">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <table id="table-leaseagreements"></table>
+                    </div>
+                </div>
+              </div> <!-- lease agreements tabpanel end -->
+
+              <div role="tabpanel" class="tab-pane" id="tenancies">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <table id="table-tenancies"></table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 margin-top-20">
+                    <div class="pull-right">
+                        <a href="{{ path("app_backend_tenancy_new", {property: property.id}) }}" class="btn btn-primary btn"><i class="glyphicon glyphicon-plus"></i><span> Add tenancy</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- tenancies tabpanel end -->
+
+              <div role="tabpanel" class="tab-pane" id="attachments">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <form class="form-horizontal">
+                        <!-- FILES -->
+                        <fieldset id="files-fieldset">
+                          <legend>Files</legend>
+                          <div class="form-group form-group-lg">
+                            <label class="col-sm-3 control-label">Documents</label>
+                              <div class="col-sm-6">
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                    <div id="table-documents"></div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="form-group form-group-lg">
+                            <label class="col-sm-3 control-label">Images</label>
+                              <div class="col-sm-6">
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                    <div id="table-images"></div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </fieldset>
+                      </form>
+                    </div>
+                </div>
+              </div> <!-- attachments tabpanel end -->
+
+            </div> <!-- tab-content end -->
+          </div> <!-- box end -->
+        </div> <!-- row end -->
+        <div class="row">
+          <div class="col-md-12">
+              <div class="pull-left">
+                  <a href="{{ path('app_backend_property_index') }}" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-chevron-left"></i><span> Back to properties list</span></a>
+              </div>
+          </div>
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    define("static_data",function(require, exports, module){
+      "use strict";
+      var data = {};
+      data.view = 'show';
+      data.property = {{ property|serialize('json', context)|raw }};
+      return data;
+
+    });
+
+    require(["/js/common.js"], function(common){
+      require(['app/modules/properties/controller/show.controller']);
+    });
+  </script>
+{% endblock %}
+
+
+
+

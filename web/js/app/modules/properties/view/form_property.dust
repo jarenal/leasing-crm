@@ -1,0 +1,472 @@
+	<input id="property_id" type="hidden" name="property[id]" data-bind="value: fields.id" value=""/>
+
+	<!-- LANDLORD -->
+	<fieldset id="landlord-fieldset">
+		<legend>Landlord</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_landlord">Name</label>
+		    <div class="col-sm-6">
+		    	<input id="property_landlord" type="hidden" name="property[landlord]" data-bind="smartComboLandlord: fields.landlord, withCreate: false"  value=""/>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- LOCAL AUTHORITY -->
+	<fieldset id="local-authority-fieldset">
+		<legend>Local authority</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_local_authority">Name</label>
+		    <div class="col-sm-6">
+		    	<input id="property_local_authority" type="hidden" name="property[local_authority]" data-bind="smartComboLocalAuthorities: fields.local_authority, withCreate: true, auto_fill_address: false"  value=""/>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- ADDRESS -->
+	<fieldset id="address-fieldset">
+		<legend>Address</legend>
+		<div class="form-group required form-group-lg" data-bind="css: { 'has-error': fields.address.hasError }">
+	    	<label class="col-sm-3 control-label" for="property_address">Address</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="property_address" placeholder="" name="property[address]" data-bind="value: fields.address, valueUpdate: 'afterkeyup'" value=""/>
+	    		<span class="help-block" data-bind="visible: fields.address.hasError, text: fields.address.validationMessage"></span>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_town">Town</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="property_town" placeholder="" name="property[town]" data-bind="value: fields.town" value=""/>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_postcode">Postcode</label>
+		    <div class="col-sm-6">
+	    		<input class="form-control" type="text" id="property_postcode" placeholder="" name="property[postcode]" data-bind="value: fields.postcode" value=""/>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- HOUSING REQUIREMENTS -->
+	<fieldset id="housing-requirements-fieldset">
+		<legend>Housing requirements</legend>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_available_date">When will is be available?</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="property_available_date" placeholder="" name="property[available_date]" data-bind="datePickerFreeDate: fields.available_date, value: fields.available_date"/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_property_type">Property type</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+				    <div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="1" name="property[property_type]" data-bind="checked: fields.features"> Detached
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="2" name="property[property_type]" data-bind="checked: fields.features"> Terraced
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="3" name="property[property_type]" data-bind="checked: fields.features"> Flats/Apartments
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="4" name="property[property_type]" data-bind="checked: fields.features"> Semi-detached
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="5" name="property[property_type]" data-bind="checked: fields.features"> Bungalow
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_bedrooms">How many bedrooms?</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="6" name="property[bedrooms]" data-bind="checked: fields.features"> 1 bedroom
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="7" name="property[bedrooms]" data-bind="checked: fields.features"> 2 bedrooms
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="8" name="property[bedrooms]" data-bind="checked: fields.features"> 3 bedrooms
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="9" name="property[bedrooms]" data-bind="checked: fields.features"> 4 bedrooms
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="10" name="property[bedrooms]" data-bind="checked: fields.features"> 5 bedrooms
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="11" name="property[bedrooms]" data-bind="checked: fields.features"> 6 bedrooms
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_floors">How many floors does the property have?</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="36" name="property[floors]" data-bind="checked: fields.features"> 1 floor
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="37" name="property[floors]" data-bind="checked: fields.features"> 2 floors
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="38" name="property[floors]" data-bind="checked: fields.features"> 3 floors
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="39" name="property[floors]" data-bind="checked: fields.features"> 4 or more floors
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_furnitures">Furnished or unfurnished?</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="12" name="property[furnitures]" data-bind="checked: fields.features"> Furnished
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="13" name="property[furnitures]" data-bind="checked: fields.features"> Unfurnished
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="14" name="property[furnitures]" data-bind="checked: fields.features"> Part furnished
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_parking">Parking?</label>
+		    <div class="col-sm-9">
+		    	<div class="col-sm-12 col-md-5 col-xl-3">
+		    		<input type="hidden" data-bind="propertyUpdateParking: fields.parking"/>
+			    	<input type="radio" name="property[parking]" value="15" data-bind="checked: fields.parking"/>&nbsp;<label class="control-label">No parking</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-7 col-xl-9">
+			    	<input type="radio" name="property[parking]" value="16" data-bind="checked: fields.parking" />&nbsp;<label class="control-label">Parking for</label>&nbsp;&nbsp;&nbsp;
+					<select id="property_parking_for" name="property[parking_for]" data-bind="value: fields.parking_for" class="form-control form-control-parking-for">
+						<option value="0">Choose one</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select><label class="control-label">&nbsp;&nbsp;cars</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div id="garden-details-box" class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_garden_details">Garden</label>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-sm-12 col-md-9 col-lg-8">
+				<div class="row">
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="20" name="property[garden_details]" data-bind="checked: fields.features"> Front garden
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="21" name="property[garden_details]" data-bind="checked: fields.features"> Fenced and secure
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="22" name="property[garden_details]" data-bind="checked: fields.features"> Large back garden
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="23" name="property[garden_details]" data-bind="checked: fields.features"> Back garden
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="24" name="property[garden_details]" data-bind="checked: fields.features"> Private/not overlooked
+						</label>
+					</div>
+					<div class="col-xs-4 col-sm-6 col-md-4">
+						<label class="checkbox-inline cbx-label">
+							<input  type="checkbox" value="25" name="property[garden_details]" data-bind="checked: fields.features"> Communal garden
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_accessible">Accessible?</label>
+		    <div class="col-sm-9">
+		    	<div class="col-sm-12 col-md-4 col-xl-1">
+		    		<input type="hidden" data-bind="propertyUpdateAccessible: fields.accessible"/>
+			    	<input type="radio" name="property[accessible]" value="28" data-bind="checked: fields.accessible" />&nbsp;<label class="control-label">None</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-8 col-xl-3">
+			    	<input type="radio" name="property[accessible]" value="26" data-bind="checked: fields.accessible" />&nbsp;<label class="control-label">Fully wheelchair accessible</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-5 col-xl-3">
+			    	<input type="radio" name="property[accessible]" value="27" data-bind="checked: fields.accessible"/>&nbsp;<label class="control-label">Minor adaptations</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_willing_to_adapt">Willing to adapt?</label>
+		    <div class="col-sm-9">
+		    	<div class="col-sm-12 col-md-4 col-xl-1">
+		    		<input type="hidden" data-bind="propertyUpdateWillingToAdapt: fields.willing_to_adapt"/>
+			    	<input type="radio" name="property[willing_to_adapt]" value="35" data-bind="checked: fields.willing_to_adapt" />&nbsp;<label class="control-label">None</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-8 col-xl-3">
+			    	<input type="radio" name="property[willing_to_adapt]" value="33" data-bind="checked: fields.willing_to_adapt" />&nbsp;<label class="control-label">Fully wheelchair accessible</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-5 col-xl-3">
+			    	<input type="radio" name="property[willing_to_adapt]" value="34" data-bind="checked: fields.willing_to_adapt"/>&nbsp;<label class="control-label">Minor adaptations</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_smoking">Smoking allowed?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+		    		<input type="hidden" data-bind="propertyUpdateSmoking: fields.smoking"/>
+			    	<input type="radio" name="property[smoking]" value="30" data-bind="checked: fields.smoking" />&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-9">
+			    	<input type="radio" name="property[smoking]" value="29" data-bind="checked: fields.smoking" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_pets">Pets allowed?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+		    		<input type="hidden" data-bind="propertyUpdatePets: fields.pets"/>
+			    	<input type="radio" name="property[pets]" value="32" data-bind="checked: fields.pets" />&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-9">
+			    	<input type="radio" name="property[pets]" value="31" data-bind="checked: fields.pets" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_previous_crimes_near">Previous crime near property?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="property[previous_crimes_near]" value="0" data-bind="checked: fields.previous_crimes_near"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-9">
+			    	<input type="radio" name="property[previous_crimes_near]" value="1" data-bind="checked: fields.previous_crimes_near" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+
+		<div id="previous_crimes_description_row" class="form-group form-group-lg" style="display:none">
+		    <div class="col-sm-6 col-sm-offset-3">
+		    	if yes, please provide details:
+		    	<textarea class="form-control" id="property_previous_crimes_description" placeholder="" name="property[previous_crimes_description]"  data-bind="value: fields.previous_crimes_description" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_special_design_features">Any other special design features?</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" id="property_special_design_features" placeholder="" name="property[special_design_features]"  data-bind="value: fields.special_design_features" rows="6" style="height:auto;"></textarea>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- VALUE -->
+	<fieldset id="value-fieldset">
+		<legend>Value</legend>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_value">Property value</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group">
+		    		<div class="input-group-addon">&pound;</div>
+	    			<input class="form-control" type="text" id="property_value" placeholder="" name="property[property_value]" data-bind="value: fields.property_value" value=""/>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_valuation_date">Date of property valuation</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group date">
+		    		<input class="form-control" type="text" id="property_valuation_date" placeholder="" name="property[valuation_date]" data-bind="datePickerFreeDate: fields.valuation_date, value: fields.valuation_date" value=""/>
+		    		<div class="input-group-addon">
+		    			<i class="glyphicon glyphicon-calendar"></i>
+		    		</div>
+	    		</div>
+		    </div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_target_rent">Target rent peer week</label>
+		    <div class="col-sm-6">
+		    	<div class="input-group">
+		    		<div class="input-group-addon">&pound;</div>
+    				<input class="form-control" type="text" id="property_target_rent" placeholder="" name="property[target_rent]" data-bind="value: fields.target_rent" value=""/>
+				</div>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_mortgage_outstanding">Mortgage outstanding on property?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="property[mortgage_outstanding]" checked="checked" value="0" data-bind="checked: fields.mortgage_outstanding"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="property[mortgage_outstanding]" value="1" data-bind="checked: fields.mortgage_outstanding" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div id="box-buy-to-let-permitted" class="form-group form-group-lg" data-bind="propertyUpdateBuyToLetPermitted: fields.mortgage_outstanding">
+			<label class="col-sm-3 control-label" for="property_buy_to_let">Buy to Let permitted on the mortgage?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="property[buy_to_let]" checked="checked" value="0" data-bind="checked: fields.buy_to_let"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="property[buy_to_let]" value="1" data-bind="checked: fields.buy_to_let" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<!-- FILES -->
+	<fieldset id="files-fieldset">
+		<legend>Files</legend>
+		<div class="form-group form-group-lg">
+		  <label class="col-sm-3 control-label">Documents</label>
+		    <div class="col-sm-6">
+		      <div class="panel panel-default">
+		        <div class="panel-body">
+		          <div id="table-documents"></div>
+		          <div id="multi-documents-container" class="plugin-multi-file"></div>
+		        </div>
+		      </div>
+		    </div>
+		</div>
+		<div class="form-group form-group-lg">
+		  <label class="col-sm-3 control-label">Images</label>
+		    <div class="col-sm-6">
+		      <div class="panel panel-default">
+		        <div class="panel-body">
+		          <div id="table-images"></div>
+		          <div id="multi-images-container" class="plugin-multi-file"></div>
+		        </div>
+		      </div>
+		    </div>
+		</div>
+	</fieldset>
+
+	<!-- MISCELLANEOUS -->
+	<fieldset id="miscellaneous-fieldset">
+	<legend>Miscellaneous</legend>
+	<div class="form-group form-group-lg">
+	    <label class="col-sm-3 control-label" for="property_comments">Comments</label>
+	    <div class="col-sm-6">
+	      <textarea class="form-control" id="property_comments" placeholder="" name="organisation[comments]"  data-bind="value: fields.comments" rows="6" style="height:auto;"></textarea>
+	    </div>
+	</div>
+	</fieldset>
+
+	<!-- ADMINISTRATION -->
+	<fieldset id="administration-fieldset">
+		<legend>Administration</legend>
+		<div class="form-group form-group-lg">
+			<label class="col-sm-3 control-label" for="property_land_registry_docs">Land registry docs?</label>
+		    <div class="col-sm-6">
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="property[land_registry_docs]" checked="checked" value="0" data-bind="checked: fields.land_registry_docs"/>&nbsp;<label class="control-label">No</label>
+		    	</div>
+		    	<div class="col-sm-12 col-md-3">
+			    	<input type="radio" name="property[land_registry_docs]" value="1" data-bind="checked: fields.land_registry_docs" />&nbsp;<label class="control-label">Yes</label>
+		    	</div>
+			</div>
+		</div>
+		<div class="form-group required form-group-lg">
+	    	<label class="col-sm-3 control-label" for="property_status">Status</label>
+		    <div class="col-sm-6">
+				<select id="property_status" name="property[status]" data-bind="value: fields.status" class="form-control">
+					<option value="0">Choose one</option>
+					{#property_statuses}
+					<option value="{id}">{name}</option>
+					{/property_statuses}
+				</select>
+			</div>
+		</div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.created_by">
+	        <label class="col-sm-3 control-label" for="property_created_by">Created by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="property_created_by" data-bind="text: fields.created_by"></span> (<span data-bind="text: fields.created_at"></span>)
+	      </div>
+	    </div>
+	    <div class="form-group form-group-lg" data-bind="if: fields.updated_by">
+	        <label class="col-sm-3 control-label" for="property_updated_by">Updated by</label>
+	        <div class="col-sm-6 control-readonly">
+	        <span id="property_updated_by" data-bind="text: fields.updated_by"></span> (<span data-bind="text: fields.updated_at"></span>)
+	      </div>
+	    </div>
+
+		<div class="form-group form-group-lg">
+			<div class="col-sm-6 col-sm-offset-3 col-xs-12 text-right">
+				<a id="btn-save-property" href="" class="btn btn-success btn-lg btn-responsive" role="button" data-bind="attr: { 'disabled': fields.formHasError() }">Save Property</a>
+			</div>
+		</div>
+	</fieldset>

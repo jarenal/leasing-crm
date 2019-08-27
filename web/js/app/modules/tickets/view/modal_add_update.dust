@@ -1,0 +1,63 @@
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{modal_title}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+        <div id="alert-modal-messages" class="row text-left" style="display:none">
+        </div>
+        <form class="form-horizontal form-modal-popup">
+          <fieldset>
+
+            <div class="form-group ticket-new form-group-lg">
+                <label class="col-sm-3 control-label" for="comment_update_date">Update date</label>
+                <div class="col-sm-9">
+                  <div class="input-group date">
+                    <input class="form-control" type="text" id="comment_update_date" placeholder="" name="comment[update_date]" data-bind="datePickerFreeDate: fields.update_date, value: fields.update_date" value="" style="z-index: 1500" />
+                    <div class="input-group-addon">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="form-group ticket-new required form-group-lg">
+                <label class="col-sm-3 control-label" for="comment_description">Description</label>
+                <div class="col-sm-9">
+                  <textarea id="comment_description" class="form-control" placeholder="" name="comment[description]"  data-bind="value: fields.description" rows="6" style="height:auto;"></textarea>
+              </div>
+            </div>
+            <div class="form-group ticket-new form-group-lg">
+                <label class="col-sm-3 control-label" for="comment_action_needed">Action needed</label>
+                <div class="col-sm-9">
+                  <textarea id="comment_action_needed" class="form-control" placeholder="" name="comment[action_needed]"  data-bind="value: fields.action_needed" rows="6" style="height:auto;"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group ticket-new form-group-lg">
+                <label class="col-sm-3 control-label" for="comment_time_spent">Time spent</label>
+                <div class="col-sm-3">
+                  <input class="form-control" type="text" id="comment_time_spent" placeholder="" name="comment[time_spent]" data-bind="value: fields.time_spent" value=""/>
+                </div>
+                <div class="col-sm-3">
+                <select id="comment_time_spent_unit" name="comment[time_spent_unit]" data-bind="value: fields.time_spent_unit" class="form-control">
+                  <option value="0">Choose one</option>
+                  <option value="Minutes">Minutes</option>
+                  <option value="Hours">Hours</option>
+                  <option value="Days">Days</option>
+                </select>
+                </div>
+            </div>
+
+          </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->

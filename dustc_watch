@@ -1,0 +1,16 @@
+#!/bin/bash
+
+case $1 in
+    "tickets")
+        dustc web/js/app/modules/tickets/view/*.dust --output=web/js/compiled/tickets.js --pwd=web/js/app/modules --watch
+        ;;
+    "properties")
+        dustc web/js/app/modules/properties/view/*.dust --output=web/js/compiled/properties.js --pwd=web/js/app/modules --watch
+        ;;
+    "organisations")
+        dustc web/js/app/modules/organisations/view/*.dust --output=web/js/compiled/organisations.js --pwd=web/js/app/modules --watch
+        ;;
+    "contacts")
+        dustc web/js/app/modules/contacts/view/*.dust --output=web/js/compiled/contacts.js --pwd=web/js/app/modules --watch
+        ;;
+esac

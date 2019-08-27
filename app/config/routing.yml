@@ -1,0 +1,11 @@
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    
+app_api:
+    type: rest
+    resource: "@AppApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+    condition: "request.isXmlHttpRequest()"
+
+app_backend:
+    resource: "@AppBackendBundle/Resources/config/routing.yml"
